@@ -1,0 +1,10 @@
+{
+  "Test_ArithmeticFunctions.py": true,
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()": true,
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_divide_function[0.75-0.25]": true,
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_modulo_function[1-<class 'TypeError'>]": true,
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_modulo_function[1-TypeError]": true,
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_modulo_function[cannot divide by zero-expected_result2]": true,
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_modulo_function[test_input2-expected_result2]": true,
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_multiply_function": true
+}
