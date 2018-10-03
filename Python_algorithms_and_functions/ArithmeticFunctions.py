@@ -70,7 +70,7 @@ class ArithmeticFunctions:
         return wrapper_function
 
     @decorator_function
-    def complete_country_with_city():
+    def complete_country_with_city(self):
         print('Iasi city')
 
     @decorator_function
@@ -83,5 +83,6 @@ class ArithmeticFunctions:
 
 if __name__ == '__main__':
     ArithmeticFunctions.add_two_numbers(2, 3)
+    ArithmeticFunctions.complete_two_cities("Craiova", "Iasi")
     sys.exit()
 

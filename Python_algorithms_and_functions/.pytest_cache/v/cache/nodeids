@@ -1,3 +1,9 @@
 [
+  "BunchOfFunction.py::CollectionsOfMethods::test_city_list",
+  "BunchOfFunction.py::CollectionsOfMethods::test_country_France",
+  "BunchOfFunction.py::CollectionsOfMethods::test_country_list",
+  "BunchOfFunction.py::CollectionsOfMethods::test_dictionary_sorted_by_keys",
+  "BunchOfFunction.py::CollectionsOfMethods::test_inserted",
+  "BunchOfFunction.py::CollectionsOfMethods::test_multiple_arguments",
   "BunchOfFunction.py::CollectionsOfMethods::test_plate_number"
 ]

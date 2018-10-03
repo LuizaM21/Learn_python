@@ -1,7 +1,4 @@
 [
-  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_exponent_function[125-125]",
-  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_exponent_function[1-1]",
-  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_exponent_function[0.2-0.2]",
-  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_exponent_function[0.04-0.04]",
-  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_exponent_function[0-0]"
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_square_root_function[64.0-64]",
+  "Test_ArithmeticFunctions.py::TestArithmeticFunctions::()::test_square_root_function[1.0-1]"
 ]

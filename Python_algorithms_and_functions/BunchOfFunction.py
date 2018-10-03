@@ -1,6 +1,7 @@
 import unittest
 import operator
 import re
+import sys
 
 
 class CollectionsOfMethods(unittest.TestCase):
@@ -104,4 +105,13 @@ class CollectionsOfMethods(unittest.TestCase):
         self.assertTrue(self.validate_car_number('IS-03-RFS'))
         self.assertFalse(self.validate_car_number('B-23456-RGD'))
         self.assertFalse(self.validate_car_number('AS-56-RGD'))
+
+
+if __name__ == "__main__":
+    col_obj = CollectionsOfMethods()
+    col_obj.test_city_list()
+    col_obj.test_plate_number()
+    col_obj.test_dictionary_sorted_by_keys()
+    sys.exit()
+    col_obj.test_country_France()
 
