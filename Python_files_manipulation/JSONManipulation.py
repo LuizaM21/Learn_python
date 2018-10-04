@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 global_folder_path = Path('C:\Learning_Python_Scripts\Python_files_manipulation')
-get_all_countries_file = 'GetAllCountries.json'
+all_countries_json = 'GetAllCountries.json'
 quiz_json_file = 'quiz.json'
 
 
@@ -17,13 +17,13 @@ class JSONManipulation:
             print("Read JSON from path: {}".format(self.input_file))
             with open(self.input_file.name, 'r', encoding="utf-8") as input_json:
                 inp_data = input_json.read()
-                self._pretty_print_json_data(inp_data)
+                inp_data = json.loads(inp_data)
                 return inp_data
         else:
             print("File not found on path: {}".format(self.input_file))
 
     @staticmethod
-    def _pretty_print_json_data(input_file, sort=True, indents=4):
+    def pretty_print_json_data(input_file, sort=True, indents=4):
         if type(input_file) is str:
             print(json.dumps(json.loads(input_file), sort_keys=sort, indent=indents))
         else:
@@ -32,10 +32,27 @@ class JSONManipulation:
 
 
 if __name__ == "__main__":
-    print('\nDisplay {} file '.format(get_all_countries_file))
-    countries_json_obj = JSONManipulation(get_all_countries_file).read_json_file()
+    print('\nDisplay {} file '.format(all_countries_json))
+    countries_json_obj = JSONManipulation(all_countries_json).read_json_file()
+    # extract total number of countries from the json
+    total_records_message = countries_json_obj['RestResponse']['messages']
+    country_results = countries_json_obj['RestResponse']['result']
+    # get country_code for a specific country represented by index in a list
+    country_ISO2_code = country_results[2]['alpha2_code']
+    print(country_ISO2_code)
+
+    print(total_records_message)
+    print(country_results)
+    [print(country['name']) for country in country_results]
+    [print(country['alpha3_code']) for country in country_results]
+    [print(country['alpha2_code']) for country in country_results]
+
+    # apply custom pretty print function to display json in console
+    JSONManipulation.pretty_print_json_data(countries_json_obj)
+
     print('\nDisplay {} file '.format(quiz_json_file))
     quiz_json_obj = JSONManipulation(quiz_json_file).read_json_file()
+    JSONManipulation.pretty_print_json_data(quiz_json_obj)
 
 
 
