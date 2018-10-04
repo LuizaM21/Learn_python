@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78c4f7b6-2d5e-4091-9b35-703b42f9d10a" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Python_files_manipulation/JSONManipulation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Python_files_manipulation/JSONManipulation.py" afterDir="false" />
-    </list>
+    <list default="true" id="78c4f7b6-2d5e-4091-9b35-703b42f9d10a" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +22,8 @@
       <file leaf-file-name="JSONManipulation.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Python_files_manipulation/JSONManipulation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+            <state relative-caret-position="544">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -358,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538642007159</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="create private pretty_print_json_data function in order to properly display json file in console">
+      <created>1538645952333</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1538645952333</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -404,7 +408,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="bottom" id="DB Execution Console" order="10" />
@@ -415,7 +418,7 @@
       <window_info id="Project Explorer" order="3" />
       <window_info id="Job Explorer" order="5" />
       <window_info anchor="bottom" id="Console" order="12" />
-      <window_info id="Structure" order="8" sideWeight="0.31758958" side_tool="true" visible="true" weight="0.23614073" />
+      <window_info id="Structure" order="8" sideWeight="0.3181818" side_tool="true" visible="true" weight="0.23614073" />
       <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
       <window_info id="UI Designer" order="1" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.39978212" />
@@ -425,10 +428,10 @@
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="9" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.4989339" visible="true" weight="0.33115467" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.4989339" weight="0.33115467" />
       <window_info anchor="bottom" id="Version Control" order="2" weight="0.32897604" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32897604" />
-      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.6824104" visible="true" weight="0.23614073" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.32897604" />
+      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.6818182" visible="true" weight="0.23614073" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32897604" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info id="Favorites" order="6" sideWeight="0.3181818" side_tool="true" weight="0.23614073" />
@@ -474,7 +477,8 @@
     <MESSAGE value="upload the entire project structure" />
     <MESSAGE value="update read_from_json context manager and use Path sub-library" />
     <MESSAGE value="use simplejson package as json in order to parse json files" />
-    <option name="LAST_COMMIT_MESSAGE" value="use simplejson package as json in order to parse json files" />
+    <MESSAGE value="create private pretty_print_json_data function in order to properly display json file in console" />
+    <option name="LAST_COMMIT_MESSAGE" value="create private pretty_print_json_data function in order to properly display json file in console" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -788,8 +792,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Python_files_manipulation/JSONManipulation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+        <state relative-caret-position="544">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
