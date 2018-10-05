@@ -7,7 +7,8 @@
                     "New York Bulls",
                     "Los Angeles Kings",
                     "Golden State Warriros",
-                    "Huston Rocket"
+                    "Huston Rocket",
+                    "null"
                 ],
                 "answer": "Huston Rocket"
             }
@@ -32,6 +33,16 @@
                     "4"
                 ],
                 "answer": "4"
+            },
+            "q3": {
+              "question": "12 - 11 = ?",
+              "options": [
+                "1",
+                "2",
+                "3",
+                "4"
+              ],
+              "answer": "4"
             }
         }
     }
