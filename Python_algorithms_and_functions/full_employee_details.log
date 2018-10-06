@@ -1,0 +1,6 @@
+INFO:root:Ran with args: (<__main__.Employee object at 0x0000029682A93780>,) and kwargs: {} 
+INFO:root:Ran with args: (<__main__.Employee object at 0x0000029682C6CF98>,) and kwargs: {} 
+INFO:root:Ran with args: (<__main__.Employee object at 0x00000298D51B38D0>,) and kwargs: {} 
+INFO:root:Ran with args: (<__main__.Employee object at 0x00000298D539E0F0>,) and kwargs: {} 
+INFO:root:Ran with args: (<__main__.Employee object at 0x000001D533A838D0>,) and kwargs: {} 
+INFO:root:Ran with args: (<__main__.Employee object at 0x000001D533C6E0F0>,) and kwargs: {} 
