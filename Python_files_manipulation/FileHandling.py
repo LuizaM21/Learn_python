@@ -8,17 +8,24 @@ from Python_files_manipulation.JSONManipulation import JSONManipulation
 global_folder_path = Path('C:\Learning_Python_Scripts\Python_files_manipulation')
 all_countries_json = global_folder_path / 'GetAllCountries.json'
 quiz_file = global_folder_path / 'quiz.json'
+country_config_csv = 'CountryConfig.csv'
 
 
 if __name__ == "__main__":
     json_obj = JSONManipulation(quiz_file).read_json_file()
     print(json_obj)
+    file_m_obj = FileManipulation(country_config_csv)
+    output_file = file_m_obj.read_file()
+    print(output_file)
+
+    write_to_file = FileManipulation('CountryList.csv').write_file()
+    print(write_to_file)
+
+    copy_into_file = FileManipulation(country_config_csv).copy_text_file('CountryConfig_copy.csv')
+    print(copy_into_file)
+    append_info_into_existent_file = FileManipulation('CountryList.csv').add_to_existent_file()
+    print(append_info_into_existent_file)
     sys.exit()
-    fh_json = FileManipulation()
-    fh_json.read_file(all_countries_json)
-    fh_json.write_file('CountryList.csv')
-    fh_json.copy_text_file()
-    fh_json.add_to_existent_file()
 
     fh_jpg = FileManipulation('sun_and_moon.jpg', 'sun_and_moon_copy.jpg')
     fh_jpg.copy_binary_file()

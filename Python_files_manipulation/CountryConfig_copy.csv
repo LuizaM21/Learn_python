@@ -1,250 +1,250 @@
-ISO3
-AND
-ARE
-AFG
-ATG
-AIA
-ALB
-ARM
-AGO
-ATA
-ARG
-ASM
-AUT
-AUS
-ABW
-ALA
-AZE
-BIH
-BRB
-BGD
-BEL
-BFA
-BGR
-BHR
-BDI
-BEN
-BLM
-BMU
-BRN
-BOL
-BES
-BRA
-BHS
-BTN
-BVT
-BWA
-BLR
-BLZ
-CAN
-CCK
-COD
-CAF
-COG
-CHE
-CIV
-COK
-CHL
-CMR
-CHN
-COL
-CRI
-CUB
-CPV
-CXR
-CYP
-CZE
-CUW
-DEU
-DJI
-DNK
-DMA
-DOM
-DZA
-ECU
-EST
-EGY
-ESH
-ERI
-ESP
-ETH
-FIN
-FJI
-FLK
-FSM
-FRO
-FRA
-GAB
-GBR
-GRD
-GEO
-GUF
-GGY
-GHA
-GIB
-GRL
-GMB
-GIN
-GLP
-GNQ
-GRC
-SGS
-GTM
-GUM
-GNB
-GUY
-HKG
-HMD
-HND
-HRV
-HTI
-HUN
-IDN
-IRL
-ISR
-IMN
-IND
-IOT
-IRQ
-IRN
-ISL
-ITA
-JEY
-JAM
-JOR
-JPN
-KEN
-KGZ
-KHM
-KIR
-COM
-KNA
-PRK
-KOR
-KWT
-CYM
-KAZ
-LAO
-LBN
-LCA
-LIE
-LKA
-LBR
-LSO
-LTU
-LUX
-LVA
-LBY
-MAR
-MCO
-MDA
-MNE
-MAF
-MDG
-MHL
-MKD
-MLI
-MMR
-MNG
-MAC
-MNP
-MTQ
-MRT
-MSR
-MLT
-MUS
-MDV
-MWI
-MEX
-MYS
-MOZ
-NAM
-NCL
-NER
-NFK
-NGA
-NIC
-NLD
-NOR
-NPL
-NRU
-NIU
-NZL
-OMN
-PAN
-PER
-PYF
-PNG
-PHL
-PAK
-POL
-SPM
-PCN
-PRI
-PSE
-PRT
-PLW
-PRY
-QAT
-REU
-ROU
-SRB
-RUS
-RWA
-SAU
-SLB
-SYC
-SDN
-SWE
-SGP
-SHN
-SVN
-SJM
-SVK
-SLE
-SMR
-SEN
-SOM
-SUR
-SSD
-STP
-SLV
-SXM
-SYR
-SWZ
-TCA
-TCD
-ATF
-TGO
-THA
-TJK
-TKL
-TLS
-TKM
-TUN
-TON
-TUR
-TTO
-TUV
-TWN
-TZA
-UKR
-UGA
-UMI
-USA
-URY
-UZB
-VAT
-VCT
-VEN
-VGB
-VIR
-VNM
-VUT
-WLF
-WSM
-YEM
-MYT
-ZAF
-ZMB
-ZWE
+No,ISO2,ISO3,CountryName,CapitalCity,CurrencyCode
+1,AD,AND,Andorra,Andorra la Vella,EUR
+2,AE,ARE,United Arab Emirates,Abu Dhabi,AED
+3,AF,AFG,Afghanistan,Kabul,AFN
+4,AG,ATG,Antigua And Barbuda,Saint John's,XCD
+5,AI,AIA,Anguilla,The Valley,XCD
+6,AL,ALB,Albania,Tirana,ALL
+7,AM,ARM,Armenia,Yerevan,AMD
+8,AO,AGO,Angola,Luanda,AOA
+9,AQ,ATA,Antarctica,NULL,USD
+10,AR,ARG,Argentina,Buenos Aires,ARS
+11,AS,ASM,American Samoa,Pago Pago,USD
+12,AT,AUT,Austria,Vienna,ATS
+13,AU,AUS,Australia,Canberra,AUD
+14,AW,ABW,Aruba,Oranjestad,AWG
+15,AX,ALA,Aland Islands,Mariehamn,EUR
+16,AZ,AZE,Azerbaijan,Baku,AZM
+17,BA,BIH,Bosnia And Herzegovina,Sarajevo,BAM
+18,BB,BRB,Barbados,Bridgetown,BBD
+19,BD,BGD,Bangladesh,Dhaka,BDT
+20,BE,BEL,Belgium,Brussels,EUR
+21,BF,BFA,Burkina Faso,Ouagadougou,XOF
+22,BG,BGR,Bulgaria,Sofia,BGN
+23,BH,BHR,Bahrain,Manama,BHD
+24,BI,BDI,Burundi,Bujumbura,BIF
+25,BJ,BEN,Benin,Porto Novo,XOF
+26,BL,BLM,Saint Barthelemy,Gustavia,EUR
+27,BM,BMU,Bermuda,Hamilton,BMD
+28,BN,BRN,Brunei Darussalam,Bandar Seri Begawan,BND
+29,BO,BOL,Bolivia, Plurinational State Of,BOB
+30,BQ,BES,Bonaire, Sint Eustatius And Saba,USD
+31,BR,BRA,Brazil,Brasilia,BRL
+32,BS,BHS,Bahamas,Nassau,BSD
+33,BT,BTN,Bhutan,Thimphu,INR
+34,BV,BVT,Bouvet Island,NULL,NOK
+35,BW,BWA,Botswana,Gaborone,BWP
+36,BY,BLR,Belarus,Minsk,BYB
+37,BZ,BLZ,Belize,Belmopan,BZD
+38,CA,CAN,Canada,Ottawa,CAD
+39,CC,CCK,Cocos (Keeling) Islands,West Island,AUD
+40,CD,COD,Congo, The Democratic Republic Of The,CDF
+41,CF,CAF,Central African Republic,Bangui,XAF
+42,CG,COG,Congo,Brazzaville,XAF
+43,CH,CHE,Switzerland,Bern,CHF
+44,CI,CIV,Cote D'Ivoire,Yamoussoukro,XOF
+45,CK,COK,Cook Islands,Avarua,NZD
+46,CL,CHL,Chile,Santiago,CLP
+47,CM,CMR,Cameroon,Yaounde,XAF
+48,CN,CHN,China,Beijing,CNY
+49,CO,COL,Colombia,Bogota,COP
+50,CR,CRI,Costa Rica,San Jose,CRC
+51,CU,CUB,Cuba,Havana,CUP
+52,CV,CPV,Cape Verde,Praia,CVE
+53,CX,CXR,Christmas Island,Flying Fish Cove,AUD
+54,CY,CYP,Cyprus,Nicosia,CYP
+55,CZ,CZE,Czech Republic,Prague,CZK
+56,CW,CUW,Curacao,Willemstad,USD
+57,DE,DEU,Germany,Berlin,DEM
+58,DJ,DJI,Djibouti,Djibouti,DJF
+59,DK,DNK,Denmark,Copenhagen,DKK
+60,DM,DMA,Dominica,Roseau,XCD
+61,DO,DOM,Dominican Republic,Santo Domingo,DOP
+62,DZ,DZA,Algeria,Algiers,DZD
+63,EC,ECU,Ecuador,Quito,ECS
+64,EE,EST,Estonia,Tallinn,EUR
+65,EG,EGY,Egypt,Cairo,EGP
+66,EH,ESH,Western Sahara,El Aaiun,MAD
+67,ER,ERI,Eritrea,Asmara,USD
+68,ES,ESP,Spain,Madrid,EUR
+69,ET,ETH,Ethiopia,Addis Ababa,ETB
+70,FI,FIN,Finland,Helsinki,EUR
+71,FJ,FJI,Fiji,Suva,FJD
+72,FK,FLK,Falkland Islands (Malvinas),Stanley,FKP
+73,FM,FSM,Micronesia, Federated States Of,USD
+74,FO,FRO,Faroe Islands,Tiirshavn,DKK
+75,FR,FRA,France,Paris,EUR
+76,GA,GAB,Gabon,Libreville,XAF
+77,GB,GBR,United Kingdom,London,GBP
+78,GD,GRD,Grenada,Saint George's,XCD
+79,GE,GEO,Georgia,Tbilisi,GEL
+80,GF,GUF,French Guiana,Cayenne,EUR
+81,GG,GGY,Guernsey,Saint Peter Port,GBP
+82,GH,GHA,Ghana,Accra,GHS
+83,GI,GIB,Gibraltar,Gibraltar,GIP
+84,GL,GRL,Greenland,Nuuk,DKK
+85,GM,GMB,Gambia,Banjul,GMD
+86,GN,GIN,Guinea,Conakry,GNF
+87,GP,GLP,Guadeloupe,Basse-Terre,EUR
+88,GQ,GNQ,Equatorial Guinea,Malabo,XAF
+89,GR,GRC,Greece,Athens,EUR
+90,GS,SGS,South Georgia And The South Sandwich Islands,USD
+91,GT,GTM,Guatemala,Guatemala City,GTQ
+92,GU,GUM,Guam,Hagatna,USD
+93,GW,GNB,Guinea-Bissau,Bissau,XOF
+94,GY,GUY,Guyana,Georgetown,GYD
+95,HK,HKG,Hong Kong,Hong Kong,HKD
+96,HM,HMD,Heard Island And Mcdonald Islands,AUD
+97,HN,HND,Honduras,Tegucigalpa,HNL
+98,HR,HRV,Croatia,Zagreb,HRK
+99,HT,HTI,Haiti,Port au Prince,HTG
+100,HU,HUN,Hungary,Budapest,HUF
+101,ID,IDN,Indonesia,Jakarta,IDR
+102,IE,IRL,Ireland,Dublin,EUR
+103,IL,ISR,Israel,Jerusalem*,ILS
+104,IM,IMN,Isle Of Man,Douglas,GBP
+105,IN,IND,India,New Delhi,INR
+106,IO,IOT,British Indian Ocean Territory,USD
+107,IQ,IRQ,Iraq,Baghdad,IQD
+108,IR,IRN,Iran, Islamic Republic Of,IRR
+109,IS,ISL,Iceland,Reykjavik,ISK
+110,IT,ITA,Italy,Rome,EUR
+111,JE,JEY,Jersey,Saint Helier,GBP
+112,JM,JAM,Jamaica,Kingston,JMD
+113,JO,JOR,Jordan,Amman,JOD
+114,JP,JPN,Japan,Tokyo,JPY
+115,KE,KEN,Kenya,Nairobi,KES
+116,KG,KGZ,Kyrgyzstan,Bishkek,KGS
+117,KH,KHM,Cambodia,Phnom Penh,KHR
+118,KI,KIR,Kiribati,Tarawa Atoll,AUD
+119,KM,COM,Comoros,Moroni,KMF
+120,KN,KNA,Saint Kitts And Nevis,Basseterre,XCD
+121,KP,PRK,Korea, Democratic People's Republic Of,KPW
+122,KR,KOR,Korea, Republic Of,KRW
+123,KW,KWT,Kuwait,Kuwait City,KWD
+124,KY,CYM,Cayman Islands,George Town,KYD
+125,KZ,KAZ,Kazakhstan,Astana,KZT
+126,LA,LAO,Lao People's Democratic Republic,LAK
+127,LB,LBN,Lebanon,Beirut,LBP
+128,LC,LCA,Saint Lucia,Castries,XCD
+129,LI,LIE,Liechtenstein,Vaduz,CHF
+130,LK,LKA,Sri Lanka,Colombo,LKR
+131,LR,LBR,Liberia,Monrovia,LRD
+132,LS,LSO,Lesotho,Maseru,LSL
+133,LT,LTU,Lithuania,Vilnius,LTL
+134,LU,LUX,Luxembourg,Luxembourg,EUR
+135,LV,LVA,Latvia,Riga,LVL
+136,LY,LBY,Libya,Tripoli,LYD
+137,MA,MAR,Morocco,Rabat,MAD
+138,MC,MCO,Monaco,Monaco,EUR
+139,MD,MDA,Moldova, Republic Of,MDL
+140,ME,MNE,Montenegro,Podgorica,EUR
+141,MF,MAF,Saint Martin (French Part),EUR
+142,MG,MDG,Madagascar,Antananarivo,MGA
+143,MH,MHL,Marshall Islands,Majuro,USD
+144,MK,MKD,Macedonia, The Former Yugoslav Republic Of,MKD
+145,ML,MLI,Mali,Bamako,XOF
+146,MM,MMR,Myanmar,Rangoon,MMK
+147,MN,MNG,Mongolia,Ulaanbaatar,MNT
+148,MO,MAC,Macao,Macao,MOP
+149,MP,MNP,Northern Mariana Islands,Saipan,USD
+150,MQ,MTQ,Martinique,Fort-de-France,EUR
+151,MR,MRT,Mauritania,Nouakchott,MRO
+152,MS,MSR,Montserrat,Plymouth,XCD
+153,MT,MLT,Malta,Valletta,EUR
+154,MU,MUS,Mauritius,Port Louis,MUR
+155,MV,MDV,Maldives,Male,MVR
+156,MW,MWI,Malawi,Lilongwe,MWK
+157,MX,MEX,Mexico,Mexico City,MXN
+158,MY,MYS,Malaysia,Kuala Lumpur,MYR
+159,MZ,MOZ,Mozambique,Maputo,MZM
+160,NA,NAM,Namibia,Windhoek,NAD
+161,NC,NCL,New Caledonia,Noumea,XPF
+162,NE,NER,Niger,Niamey,XOF
+163,NF,NFK,Norfolk Island,Kingston,AUD
+164,NG,NGA,Nigeria,Abuja,NGN
+165,NI,NIC,Nicaragua,Managua,NIO
+166,NL,NLD,Netherlands,Amsterdam,EUR
+167,NO,NOR,Norway,Oslo,NOK
+168,NP,NPL,Nepal,Kathmandu,NPR
+169,NR,NRU,Nauru,no official capital,AUD
+170,NU,NIU,Niue,Alofi,NZD
+171,NZ,NZL,New Zealand,Wellington,NZD
+172,OM,OMN,Oman,Muscat,OMR
+173,PA,PAN,Panama,Panama City,PAB
+174,PE,PER,Peru,Lima,PEN
+175,PF,PYF,French Polynesia,Papeete,XPF
+176,PG,PNG,Papua New Guinea,Port Moresby,PGK
+177,PH,PHL,Philippines,Manila,PHP
+178,PK,PAK,Pakistan,Islamabad,PKR
+179,PL,POL,Poland,Warsaw,PLN
+180,PM,SPM,Saint Pierre And Miquelon,EUR
+181,PN,PCN,Pitcairn,Adamstown,NZD
+182,PR,PRI,Puerto Rico,San Juan,USD
+183,PS,PSE,Palestine, State Of,USD
+184,PT,PRT,Portugal,Lisbon,EUR
+185,PW,PLW,Palau,Melekeok,USD
+186,PY,PRY,Paraguay,Asuncion,PYG
+187,QA,QAT,Qatar,Doha,QAR
+188,RE,REU,Reunion,Saint-Denis,EUR
+189,RO,ROU,Romania,Bucharest,RON
+190,RS,SRB,Serbia,Belgrade,RSD
+191,RU,RUS,Russian Federation,Moscow,RUB
+192,RW,RWA,Rwanda,Kigali,RWF
+193,SA,SAU,Saudi Arabia,Riyadh,SAR
+194,SB,SLB,Solomon Islands,Honiara,SBD
+195,SC,SYC,Seychelles,Victoria,SCR
+196,SD,SDN,Sudan,Khartoum,SDD
+197,SE,SWE,Sweden,Stockholm,SEK
+198,SG,SGP,Singapore,Singapore,SGD
+199,SH,SHN,Saint Helena, Ascension And Tristan Da Cunha,SHP
+200,SI,SVN,Slovenia,Ljubljana,EUR
+201,SJ,SJM,Svalbard And Jan Mayen,Longyearbyen,NOK
+202,SK,SVK,Slovakia,Bratislava,EUR
+203,SL,SLE,Sierra Leone,Freetown,SLL
+204,SM,SMR,San Marino,San Marino,EUR
+205,SN,SEN,Senegal,Dakar,XOF
+206,SO,SOM,Somalia,Mogadishu,SOS
+207,SR,SUR,Suriname,Paramaribo,SRD
+208,SS,SSD,South Sudan,Ramciel,SDG
+209,ST,STP,Sao Tome And Principe,Sao Tome,STD
+210,SV,SLV,El Salvador,San Salvador,SVC
+211,SX,SXM,Sint Maarten (Dutch Part),Philipsburg,USD
+212,SY,SYR,Syrian Arab Republic,Damascus,SYP
+213,SZ,SWZ,Swaziland,Mbabane,SZL
+214,TC,TCA,Turks And Caicos Islands,Cockburn Town,USD
+215,TD,TCD,Chad,N'Djamena,XAF
+216,TF,ATF,French Southern Territories,NULL,EUR
+217,TG,TGO,Togo,Lome,XOF
+218,TH,THA,Thailand,Bangkok,THB
+219,TJ,TJK,Tajikistan,Dushanbe,TJS
+220,TK,TKL,Tokelau,Nukunonu,NZD
+221,TL,TLS,Timor-Leste,Dili,USD
+222,TM,TKM,Turkmenistan,Ashgabat,USD
+223,TN,TUN,Tunisia,Tunis,TND
+224,TO,TON,Tonga,Nuku'alofa,TOP
+225,TR,TUR,Turkey,Ankara,TRY
+226,TT,TTO,Trinidad And Tobago,Port of Spain,TTD
+227,TV,TUV,Tuvalu,Vaiaku village,AUD
+228,TW,TWN,Taiwan, Province Of China,TWD
+229,TZ,TZA,Tanzania, United Republic Of,TZS
+230,UA,UKR,Ukraine,Kyiv,UAH
+231,UG,UGA,Uganda,Kampala,UGX
+232,UM,UMI,United States Minor Outlying Islands,NULL,USD
+233,US,USA,United States,Washington D.C.,USD
+234,UY,URY,Uruguay,Montevideo,UYU
+235,UZ,UZB,Uzbekistan,Tashkent,USD
+236,VA,VAT,Holy See (Vatican City State),Vatican City,EUR
+237,VC,VCT,Saint Vincent And The Grenadines,XCD
+238,VE,VEN,Venezuela, Bolivarian Republic Of,VEF
+239,VG,VGB,Virgin Islands, British,USD
+240,VI,VIR,Virgin Islands, U.S.,USD
+241,VN,VNM,Viet Nam,Hanoi,VND
+242,VU,VUT,Vanuatu,Port Vila,VUV
+243,WF,WLF,Wallis And Futuna,Mata-Utu,XPF
+244,WS,WSM,Samoa,Apia,WST
+245,YE,YEM,Yemen,Sanaa,YER
+246,YT,MYT,Mayotte,Mamoudzou,EUR
+247,ZA,ZAF,South Africa,Pretoria,ZAR
+248,ZM,ZMB,Zambia,Lusaka,ZMW
+249,ZW,ZWE,Zimbabwe,Harare,ZWD
