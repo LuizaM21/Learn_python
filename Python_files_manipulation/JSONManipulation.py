@@ -4,7 +4,7 @@ import simplejson as json
 from pathlib import Path
 
 
-global_folder_path = Path('C:\Learning_Python_Scripts\Python_files_manipulation')
+global_folder_path = Path(r'E:\01_Learn_python\Python_files_manipulation')
 all_countries_json = 'GetAllCountries.json'
 quiz_json_file = 'quiz.json'
 
