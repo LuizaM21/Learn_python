@@ -25,11 +25,11 @@ if __name__ == "__main__":
     print(copy_into_file)
     append_info_into_existent_file = FileManipulation('CountryList.csv').add_to_existent_file()
     print(append_info_into_existent_file)
+
+    fh_jpg = FileManipulation('sun_and_moon.jpg').copy_binary_file('sun_and_moon_copy.jpg')
+    print(fh_jpg)
+
     sys.exit()
-
-    fh_jpg = FileManipulation('sun_and_moon.jpg', 'sun_and_moon_copy.jpg')
-    fh_jpg.copy_binary_file()
-
     csv_m = CSVManipulation('CountryConfig.csv', 'CountryConfig_copy.csv')
     csv_m.read_csv_specific_column(3)
     csv_m.copy_csv_column_into_new_file(3)

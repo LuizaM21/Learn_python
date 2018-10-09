@@ -34,10 +34,11 @@ class FileManipulation:
     # copy file in binary mode
     def copy_binary_file(self, output_file):
         print('\nCall copy_binary_file function from FileManipulation class')
-        with open('{}'.format(self), 'rb') as read_b:
+        with open('{}'.format(self.file), 'rb') as read_b:
             with open('{}'.format(output_file), 'wb') as copy_b:
                 for line in read_b:
                     copy_b.write(line)
+        return True
 
     def add_to_existent_file(self):
         print('\nCall add_to_existent_file function from FileManipulation class\n')
