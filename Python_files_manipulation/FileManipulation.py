@@ -7,7 +7,6 @@ class FileManipulation:
 
     # automatically close the file using context manager
     def read_file(self):
-        print('Call read_file method')
         with open('{}'.format(self.file), 'r') as f:
             f_content = f.read()
             return f_content

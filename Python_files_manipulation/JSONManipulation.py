@@ -60,6 +60,7 @@ if __name__ == "__main__":
     quiz_json_obj = JSONManipulation(quiz_json_file).read_json_file()
     print(quiz_json_obj)
     JSONManipulation.pretty_print_json_data(quiz_json_obj)
+    sys.exit()
 
 
 
