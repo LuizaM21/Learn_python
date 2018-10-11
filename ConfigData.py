@@ -79,11 +79,13 @@ class ConfigData:
         expected_dict_key = CONFIG_MAPPING.get(parent_tag)
 
         if actual_dict_key.keys().__len__() > expected_dict_key.__len__():
-            print("File has more config keys! Expected {0} Actual {1}".format(expected_dict_key.__len__(), actual_dict_key.keys().__len__()))
+            print("File has more config keys! Expected {0} Actual {1}".format(expected_dict_key.__len__(),
+                                                                              actual_dict_key.keys().__len__()))
             ACTUAL_RESULT_CODE = EXTRA_ERROR_CODE
 
-        if  actual_dict_key.keys().__len__() < expected_dict_key.__len__():
-            print("File has less config keys! Expected {0} Actual {1}".format(expected_dict_key.__len__(), actual_dict_key.keys().__len__()))
+        if actual_dict_key.keys().__len__() < expected_dict_key.__len__():
+            print("File has less config keys! Expected {0} Actual {1}".format(expected_dict_key.__len__(),
+                                                                              actual_dict_key.keys().__len__()))
             ACTUAL_RESULT_CODE = MISSING_ERROR_CODE
 
         for expected_key in expected_dict_key:
@@ -94,10 +96,19 @@ class ConfigData:
                 ACTUAL_RESULT_CODE = MISSING_ERROR_CODE
         return ACTUAL_RESULT_CODE
 
+    def get_value(self, dict_key):
+        """
+        :param dict_key: return a desired value from the valid dictionary defined as constants
+        :return: "" string is the parameter value is not found
+        """
+        if self._paramDict.__contains__(dict_key):
+            return self._paramDict.get(dict_key)
+        return ""
 
 
 if __name__ == "__main__":
-    xml_doc = ConfigData.read_from_config_file()
-    JSONManipulation.pretty_print_json_data(xml_doc)
+    xml_doc = ConfigData.read_from_config_file("")
+    print(xml_doc)
+    # JSONManipulation.pretty_print_json_data(xml_doc)
     print("Expected dictionary tab values")
     JSONManipulation.pretty_print_json_data(CONFIG_MAPPING)
