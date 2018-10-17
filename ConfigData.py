@@ -18,8 +18,8 @@ OUTPUT_DIR = "output_dir"
 CONFIG_MAPPING = {}
 
 # xml child tags
-CONFIG_INPUT_LIST = ["input_csv_file", "input_json_file", "input_other_file"]
-CONFIG_OUTPUT_LIST = ["output_csv_file", "output_json_file", "output_other_file"]
+CONFIG_INPUT_LIST = ["input_csv_file", "input_json_file", "input_xml_file", "input_other_file"]
+CONFIG_OUTPUT_LIST = ["output_csv_file", "output_json_file", "output_xml_file", "output_other_file"]
 
 # create an expected dictionary formed by expected xml tabs
 CONFIG_MAPPING.update({INPUT_DIR: CONFIG_INPUT_LIST})
@@ -109,6 +109,7 @@ class ConfigData:
 if __name__ == "__main__":
     xml_doc = ConfigData.read_from_config_file("")
     print(xml_doc)
+    print(ConfigData.get_value(CONFIG_INPUT_LIST[0]))
     # JSONManipulation.pretty_print_json_data(xml_doc)
     print("Expected dictionary tab values")
     JSONManipulation.pretty_print_json_data(CONFIG_MAPPING)
