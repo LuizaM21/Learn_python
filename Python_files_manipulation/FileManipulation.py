@@ -2,6 +2,19 @@
 
 class FileManipulation:
 
+    instance = None
+
+    @staticmethod
+    def get_instance():
+        """
+        Verifies if an instance is already created, otherwise create one and saves it,
+        to avoid multiple reads of the same file
+        :return: a ConfigData instance
+        """
+        if not FileManipulation():
+            FileManipulation.instance = FileManipulation()
+        return FileManipulation.instance
+
     def __init__(self, input_file):
         self.file = input_file
 

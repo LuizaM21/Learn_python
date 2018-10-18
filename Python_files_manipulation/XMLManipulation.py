@@ -4,7 +4,9 @@ import ConfigData as cf
 from pathlib import Path
 
 BASE_DIR = Path(r"C:\Learning_Python_Scripts\Python_project_files\Input_files\XML_files")
+OUTPUT_DIR = Path(r"C:\Learning_Python_Scripts\Python_project_files\Output_files\XML_files")
 xml_file = "Cell3DReport.xml"
+output_file = OUTPUT_DIR / "output_xml_file.xml"
 
 
 class XMLManipulation(object):
@@ -38,6 +40,9 @@ class XMLManipulation(object):
 
 if __name__ == "__main__":
     xml_data = XMLManipulation(xml_file).read_xml_file()
+    with open(str(output_file), 'w') as output_f:
+        print("write file in: {}".format(output_file))
+        output_f.write(xml_data)
     print(XMLManipulation.pretty_print_xml_data(xml_data))
     sys.exit()
 

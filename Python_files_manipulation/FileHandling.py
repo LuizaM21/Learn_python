@@ -29,7 +29,6 @@ if __name__ == "__main__":
     fh_jpg = FileManipulation('sun_and_moon.jpg').copy_binary_file('sun_and_moon_copy.jpg')
     print(fh_jpg)
 
-    sys.exit()
     csv_m = CSVManipulation('CountryConfig.csv', 'CountryConfig_copy.csv')
     csv_m.read_csv_specific_column(3)
     csv_m.copy_csv_column_into_new_file(3)
@@ -37,5 +36,6 @@ if __name__ == "__main__":
     csv_dict = CSVManipulation('CountryConfig.csv', 'CountryConfig_columns_copy.csv')
     csv_dict.read_csv_as_dictionary('CapitalCity')
     csv_dict.write_csv_as_dictionary()
+    sys.exit()
 
 
