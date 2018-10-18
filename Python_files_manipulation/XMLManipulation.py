@@ -1,5 +1,4 @@
 import xml.dom.minidom as minidom
-import xml.etree.cElementTree as ET
 import sys
 import ConfigData as cf
 from pathlib import Path
@@ -30,17 +29,15 @@ class XMLManipulation(object):
             return FileNotFoundError
 
     @staticmethod
-    def pretty_print_xml_data(input_file, sort=True, indents=4):
-        # TODO: refactor the pretty_print to work for xml files
-        if type(input_file) is str:
-            print(json.dumps(json.loads(input_file), sort_keys=sort, indent=indents))
-        else:
-            print(json.dumps(input_file, sort_keys=sort, indent=indents))
-        return None
+    def pretty_print_xml_data(input_file):
+        xml_str = minidom.parseString(input_file).toprettyxml()
+        # remove empty lines returned from minidom parser
+        correct_format = "".join([s for s in xml_str.strip().splitlines(True) if s.strip()])
+        return correct_format
 
 
 if __name__ == "__main__":
-    print(type(XMLManipulation(xml_file).read_xml_file()))
-    print(XMLManipulation(xml_file).read_xml_file())
+    xml_data = XMLManipulation(xml_file).read_xml_file()
+    print(XMLManipulation.pretty_print_xml_data(xml_data))
     sys.exit()
 
