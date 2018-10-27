@@ -106,11 +106,21 @@ class CollectionsOfMethods(unittest.TestCase):
         self.assertFalse(self.validate_car_number('B-23456-RGD'))
         self.assertFalse(self.validate_car_number('AS-56-RGD'))
 
+    def reduce_values(self, item):
+        return lambda x, y: x + y
+
+    @staticmethod
+    def my_reduce(func, data=range(5)):
+        rez = CollectionsOfMethods()
+        for i in data:
+            result = rez.reduce_values(result, i)
+        return rez
+
 
 if __name__ == "__main__":
     col_obj = CollectionsOfMethods()
-    col_obj.test_city_list()
-    col_obj.test_plate_number()
+    col_obj.testty_list()
+    col_obj.test_pl_ciate_number()
     col_obj.test_dictionary_sorted_by_keys()
     sys.exit()
     col_obj.test_country_France()

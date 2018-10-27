@@ -66,7 +66,7 @@ pp(capital_to_country)
 alphabet_dict = {'a': 'ALPHA', 'b': 'BETA', 'c': 'CHARLIE', 'd': 'DELTA'}
 print('unsorted dictionary')
 print(alphabet_dict)
-alphabet_dict = OrderedDict().fromkeys('abcd',True)
+alphabet_dict = OrderedDict().fromkeys('abcd', True)
 print('sorted dictionary using OrderedDict')
 print(alphabet_dict)
 
