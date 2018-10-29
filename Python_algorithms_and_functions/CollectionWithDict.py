@@ -56,7 +56,6 @@ print('r' in avionic_alphabet)
 
 
 """-----------------dictionary comprehension-----------------"""
-
 county_to_capital = {'England': 'London', 'Romania': 'Bucharest', 'Greece': 'Athene', 'Turkey': 'Ankara'}
 print(county_to_capital)
 
@@ -69,4 +68,13 @@ print(alphabet_dict)
 alphabet_dict = OrderedDict().fromkeys('abcd', True)
 print('sorted dictionary using OrderedDict')
 print(alphabet_dict)
+
+
+"""-----------------create dict in dict-----------------------"""
+
+basket_1 = {'apples': 3, 'nuts': 5, 'vegetables': 6}
+print("BEFORE basket_1 ", basket_1)
+basket_2 = {'red': 1, 'green': 2, 'yellow': 3}
+basket_1['apples'] = basket_2
+print("AFTER basket_1 ", basket_1)
 

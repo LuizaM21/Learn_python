@@ -3,11 +3,13 @@
     <input_dir>
         <input_csv_file>C:\Learning_Python_Scripts\Python_project_files\Input_files\CSV_files</input_csv_file>
         <input_json_file>C:\Learning_Python_Scripts\Python_project_files\Input_files\JSON_files</input_json_file>
+        <input_xml_file>C:\Learning_Python_Scripts\Python_project_files\Input_files\XML_files</input_xml_file>
         <input_other_file>C:\Learning_Python_Scripts\Python_project_files\Input_files\OTHER_files</input_other_file>
     </input_dir>
     <output_dir>
         <output_csv_file>C:\Learning_Python_Scripts\Python_project_files\Output_files\CSV_files</output_csv_file>
         <output_json_file>C:\Learning_Python_Scripts\Python_project_files\Output_files\JSON_files</output_json_file>
+        <output_xml_file>C:\Learning_Python_Scripts\Python_project_files\Output_files\XML_files</output_xml_file>
         <output_other_file>C:\Learning_Python_Scripts\Python_project_files\Output_files\OTHER_files</output_other_file>
     </output_dir>
 </config>

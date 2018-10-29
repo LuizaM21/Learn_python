@@ -90,6 +90,11 @@ seasons = ['winter', 'spring', 'summer', 'autumn']
 
 
 """----------------------List filtering predicates-------------------------"""
+alphabet = ['a', 'b', 'c', 'd', 'e']
+for letter in alphabet:
+    # print("before alphabet", alphabet)
+    alphabet.remove(letter)
+    print("after alphabet", alphabet)
 
 
 def number_is_prime(x):
