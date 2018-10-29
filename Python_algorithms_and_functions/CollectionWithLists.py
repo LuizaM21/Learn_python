@@ -106,6 +106,20 @@ def number_is_prime(x):
     return True
 
 
+input_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+
+def filter_even_numbers():
+    even_numbers = list(filter(lambda x: x if not x % 2 in input_list else None, input_list))
+    return even_numbers
+
+# TODO: solve the second lambda function
+
+
+def is_even(num):
+    return list(filter(lambda x: num if num % 2 else None, input_list))
+
+
 if __name__ == "__main__":
     season_iter = iter(seasons)
     print(next(season_iter))
