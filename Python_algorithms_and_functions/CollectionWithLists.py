@@ -128,7 +128,7 @@ def interval(start, stop=None, step=None):
     initial_start = start
     while check_interval(initial_start):
         interval_list.append(initial_start)
-        initial_start = initial_start + step
+        initial_start += step
     return interval_list
 
 
@@ -148,6 +148,8 @@ def is_even(num):
 
 if __name__ == "__main__":
     print(interval(1, 11, 2))
+    print(interval(11))
+    print(interval(9, 12, 2))
 
     print('generate prime numbers for first 100 values ')
     [x for x in range(101) if number_is_prime(x)]

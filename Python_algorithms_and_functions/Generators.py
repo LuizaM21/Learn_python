@@ -47,7 +47,31 @@ def is_prime(n):
     return True
 
 
+def even_number(start, stop=None, step=2):
+    interval_list = []
+    step = 1 if step is None else step
+
+    def in_interval(element):
+        if element < stop:
+            return start <= element < stop
+        return start >= element > stop
+
+    if stop is None:
+        stop, start = start, 0
+    if stop == start:
+        return interval_list
+    if not in_interval(start + step):
+        return interval_list
+
+    current_elem = start
+    while in_interval(current_elem):
+        interval_list.append(current_elem)
+        yield interval_list
+        current_elem += step
+
+
 if __name__ == "__main__":
+    [print("even_num: ", i) for i in even_number(11)]
     g = gent123()
     # to retrieve a value of a generator we can use next() function
     [print(gen) for gen in g]
