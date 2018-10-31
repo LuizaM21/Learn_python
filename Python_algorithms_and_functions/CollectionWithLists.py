@@ -103,7 +103,33 @@ def number_is_prime(x):
     for i in range(2, int(sqrt(x)) + 1):
         if x % i == 0:
             return False
-    return True
+
+
+"""---------------------List interval from a range of numbers---------------"""
+
+
+def interval(start, stop=None, step=None):
+    """Generate an interval of integers"""
+    def check_interval(element):
+        """Verify is the element is present in the given range"""
+        if start < stop:
+            return start <= element < stop
+        return start >= element > stop
+
+    interval_list = []
+    step = 1 if step is None else step
+    if stop is None:
+        stop, start = start, 0
+    if stop == start:
+        return interval_list
+    if not check_interval(start + step):
+        return interval_list
+
+    initial_start = start
+    while check_interval(initial_start):
+        interval_list.append(initial_start)
+        initial_start = initial_start + step
+    return interval_list
 
 
 input_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -121,9 +147,7 @@ def is_even(num):
 
 
 if __name__ == "__main__":
-    season_iter = iter(seasons)
-    print(next(season_iter))
-    print(next(season_iter))
+    print(interval(1, 11, 2))
 
     print('generate prime numbers for first 100 values ')
     [x for x in range(101) if number_is_prime(x)]
