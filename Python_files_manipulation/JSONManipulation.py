@@ -1,3 +1,28 @@
+"""
+    !python
+    def note(student, *observatii, curs="Python", database={}, **note):
+        # DacÄƒ studentul nu existÄƒ Ã®n baza de date adÄƒugÄƒm o cheie nouÄƒ Ã®n
+        # dicÈ›ionar, iar dacÄƒ existÄƒ obÈ›inem valoarea acesteia
+        student = database.setdefault(student, {})
+        # ObÈ›inem database[student]["observaÈ›ii"]
+        lista_observatii = student.setdefault("observatii", [])
+        # ObÈ›ine database[student]["note"]
+        note_student = student.setdefault("note", {})
+
+        # AdÄƒugÄƒm observaÈ›iile Ã®n cheia corespunzÄƒtoare
+        for observatie in observatii:
+            lista_observatii.append(observatie)
+
+        # AdÄƒugÄƒm fiecare notÄƒ Ã®n cheia corespunzÄƒtoare
+        for laborator, nota in note.items():
+            note_student[laborator] = nota
+
+        # ReturnÄƒm o referinÈ›Äƒ a bazei de date
+        return database
+
+"""
+
+
 import sys
 import pprint
 import simplejson as json
@@ -13,6 +38,11 @@ class JSONManipulation(object):
 
     def __init__(self, json_file):
         self.input_file = global_folder_path / json_file
+
+    @staticmethod
+    def create_countries_json(country_name, *towns, currency=None, country={}, **country_neighbours):
+        country.setdefault(country_name, {})
+        return country
 
     def read_json_file(self):
         if self.input_file.exists():
@@ -34,33 +64,36 @@ class JSONManipulation(object):
 
 
 if __name__ == "__main__":
-    # sys.exit()
-    print('\nDisplay {} file '.format(all_countries_json))
-    json_obj = JSONManipulation(all_countries_json)
-    countries_json = json_obj.read_json_file()
-    print(countries_json)
-    # extract total number of countries from the json
-    total_records_message = countries_json['RestResponse']['messages']
-    print(total_records_message)
+    country_list = ["Nepal", "China", "United States"]
+    country_json = [JSONManipulation.create_countries_json(x) for x in country_list]
+    pprint.pprint(country_json)
+    # # sys.exit()
+    # print('\nDisplay {} file '.format(all_countries_json))
+    # json_obj = JSONManipulation(all_countries_json)
+    # countries_json = json_obj.read_json_file()
+    # print(countries_json)
+    # # extract total number of countries from the json
+    # total_records_message = countries_json['RestResponse']['messages']
+    # print(total_records_message)
 
-    country_results = countries_json['RestResponse']['result']
-    # get country_code for a specific country represented by index in a list
-    country_ISO2_code = country_results[2]['alpha2_code']
-    print(country_ISO2_code)
-    print(total_records_message)
-    print(country_results)
-    # [print(country['name']) for country in country_results]
-    # [print(country['alpha3_code']) for country in country_results]
-    # [print(country['alpha2_code']) for country in country_results]
+    # country_results = countries_json['RestResponse']['result']
+    # # get country_code for a specific country represented by index in a list
+    # country_ISO2_code = country_results[2]['alpha2_code']
+    # print(country_ISO2_code)
+    # print(total_records_message)
+    # print(country_results)
+    # # [print(country['name']) for country in country_results]
+    # # [print(country['alpha3_code']) for country in country_results]
+    # # [print(country['alpha2_code']) for country in country_results]
 
-    # apply custom pretty print function to display json in console
-    # JSONManipulation.pretty_print_json_data(countries_json)
-    pprint.pprint(countries_json)
+    # # apply custom pretty print function to display json in console
+    # # JSONManipulation.pretty_print_json_data(countries_json)
+    # pprint.pprint(countries_json)
 
-    # print('\nDisplay {} file '.format(quiz_json_file))
-    # quiz_json_obj = JSONManipulation(quiz_json_file).read_json_file()
-    # print(quiz_json_obj)
-    # JSONManipulation.pretty_print_json_data(quiz_json_obj)
+#     # print('\nDisplay {} file '.format(quiz_json_file))
+#     # quiz_json_obj = JSONManipulation(quiz_json_file).read_json_file()
+#     # print(quiz_json_obj)
+#     # JSONManipulation.pretty_print_json_data(quiz_json_obj)
     sys.exit()
 
 
