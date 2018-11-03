@@ -1,27 +1,3 @@
-"""
-    !python
-    def note(student, *observatii, curs="Python", database={}, **note):
-        # DacÄƒ studentul nu existÄƒ Ã®n baza de date adÄƒugÄƒm o cheie nouÄƒ Ã®n
-        # dicÈ›ionar, iar dacÄƒ existÄƒ obÈ›inem valoarea acesteia
-        student = database.setdefault(student, {})
-        # ObÈ›inem database[student]["observaÈ›ii"]
-        lista_observatii = student.setdefault("observatii", [])
-        # ObÈ›ine database[student]["note"]
-        note_student = student.setdefault("note", {})
-
-        # AdÄƒugÄƒm observaÈ›iile Ã®n cheia corespunzÄƒtoare
-        for observatie in observatii:
-            lista_observatii.append(observatie)
-
-        # AdÄƒugÄƒm fiecare notÄƒ Ã®n cheia corespunzÄƒtoare
-        for laborator, nota in note.items():
-            note_student[laborator] = nota
-
-        # ReturnÄƒm o referinÈ›Äƒ a bazei de date
-        return database
-
-"""
-
 
 import sys
 import pprint
@@ -64,8 +40,10 @@ class JSONManipulation(object):
 
 
 if __name__ == "__main__":
-    country_list = ["Nepal", "China", "United States"]
-    country_json = [JSONManipulation.create_countries_json(x) for x in country_list]
+    country_list = ["Nepal", "China", "United States", "England"]
+    for x in country_list:
+        country_json = JSONManipulation.create_countries_json(x)
+    # country_json = [JSONManipulation.create_countries_json(x) for x in country_list]
     pprint.pprint(country_json)
     # # sys.exit()
     # print('\nDisplay {} file '.format(all_countries_json))
