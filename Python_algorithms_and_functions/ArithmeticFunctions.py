@@ -10,7 +10,7 @@ class ArithmeticFunctions:
         return result
 
     @staticmethod
-    def gaseste_unic(number_list):
+    def find_unique_number(number_list):
         single_val = set()
         for num in number_list:
             if num not in single_val:
@@ -18,8 +18,6 @@ class ArithmeticFunctions:
             else:
                 single_val.remove(num)
         return int(str(single_val).replace("{", "").replace("}", ""))
-
-
 
     @staticmethod
     def prim(numar):
@@ -223,9 +221,9 @@ if __name__ == '__main__':
     assert ArithmeticFunctions.cuvinte("Incepe sa imi placa Python.") == 5
     print(ArithmeticFunctions.prim(3))
     print(ArithmeticFunctions.prim(100151))
-    assert ArithmeticFunctions.gaseste_unic([1, 1, 2, 3, 2]) == 3
-    assert ArithmeticFunctions.gaseste_unic([1, 1, 2, 2, 1]) == 1
-    assert ArithmeticFunctions.gaseste_unic([1, 1, 1, 2, 2]) == 1
+    assert ArithmeticFunctions.find_unique_number([1, 1, 2, 3, 2]) == 3
+    assert ArithmeticFunctions.find_unique_number([1, 1, 2, 2, 1]) == 1
+    assert ArithmeticFunctions.find_unique_number([1, 1, 1, 2, 2]) == 1
     ArithmeticFunctions.add_two_numbers(2, 3)
     ArithmeticFunctions.complete_two_cities("Craiova", "Iasi")
     sys.exit()
