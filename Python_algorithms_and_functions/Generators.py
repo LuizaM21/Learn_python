@@ -114,10 +114,46 @@ def even_number(start, stop=None, step=2):
         current_elem += step
 
 
+def get_sum(sum_number):  # sum = 10
+    for c1 in range(10):  # c1 = 7
+        if c1 > sum_number:
+            break
+        for c2 in range(10):  # c2 = 5
+            if c1 + c2 > sum_number:
+                break
+            for c3 in range(10):  # 12 > 10
+                if c1 + c2 + c3 > sum_number:
+                    break
+                nr = str(c1) + str(c2) + str(c3)
+                if c1 + c2 + c3 == sum_number:
+                    yield nr
+
+
+def get_prod(prod):
+    for c1 in range(10):
+        for c2 in range(10):
+            for c3 in range(10):
+                if c1 * c2 * c3 > prod:
+                    break
+                nr = str(c1) + str(c2) + str(c3)
+                if c1 * c2 * c3 == prod:
+                    yield nr
+
+
+def aggregate_sum_and_prod(sum_n, prod):
+    # lista = list(get_suma(suma))
+    for abc in get_prod(prod):
+        for u in range(10):
+            for xyz in get_sum(sum_n):
+                yield int(abc + str(u) + xyz)
+
+
 if __name__ == "__main__":
-    [print(x, end=' ')for x in divisor_gen(300)]
-    print()
-    [print(x) for x in sum_of_input(7)]
+    [print(x) for x in get_prod(8)]
+    # [print(item) for item in aggregate_sum_and_prod(3, 6)]
+    # [print(x, end=' ')for x in divisor_gen(300)]
+    # print()
+    # [print(x) for x in sum_of_input(7)]
     # [print("even_num: ", i) for i in even_number(11)]
     # g = gent123()
     # # to retrieve a value of a generator we can use next() function
@@ -130,7 +166,7 @@ if __name__ == "__main__":
     # [print(item) for item in eliminate_duplicate_value(duplicate_values)]
     # print('lucas series')
     # [print(x) for x in (p for p in lucas_series() if is_prime(p))]
-    #
+
 
 
 

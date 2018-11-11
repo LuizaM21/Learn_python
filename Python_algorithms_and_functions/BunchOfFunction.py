@@ -66,6 +66,7 @@ class CollectionsOfMethods(unittest.TestCase):
         print(args)
         print(kwargs)
 
+    """"
     def test_multiple_arguments(self):
         courses = ['Math', 'Arts', 'Science']
         student_info = {'name': 'John', 'age': 24, 'study year': 2}
@@ -116,12 +117,17 @@ class CollectionsOfMethods(unittest.TestCase):
             result = rez.reduce_values(result, i)
         return rez
 
+    """
+    def validate_folder(self, dir_1, dir_2):
+        return len(sys.argv)
+
 
 if __name__ == "__main__":
     col_obj = CollectionsOfMethods()
-    col_obj.testty_list()
-    col_obj.test_pl_ciate_number()
-    col_obj.test_dictionary_sorted_by_keys()
-    sys.exit()
-    col_obj.test_country_France()
+    print(col_obj.validate_folder(1, 2))
+    # col_obj.testty_list()
+    # col_obj.test_pl_ciate_number()
+    # col_obj.test_dictionary_sorted_by_keys()
+    # sys.exit()
+    # col_obj.test_country_France()
 
