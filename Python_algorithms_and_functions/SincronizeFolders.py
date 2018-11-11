@@ -6,7 +6,7 @@
     the file will be deleted from the destination folder """
 
 import sys
-from os.path import isdir, isfile, join, abspath
+from os.path import isdir, join, abspath
 from os import listdir, walk
 import shutil
 
@@ -34,15 +34,12 @@ def get_arguments():
     return dir_1, dir_2
 
 
-def get_dirs():
-    source_dir = get_arguments()[0]
+def get_folders(source_dir):
     dir_list = [abspath(join(source_dir, dir_f)) for dir_f in listdir(source_dir) if isdir(join(source_dir, dir_f))]
-    # [print("dir_list_item: ", x) for x in dir_list]
     return dir_list
 
 
-def get_files():
-    source_dir = get_arguments()[0]
+def get_files(source_dir):
     file_list = []
     for dir_item, folder_item, file_item in walk(source_dir):
         for f in file_item:
@@ -51,28 +48,38 @@ def get_files():
     return file_list
 
 
-def get_destination():
+def get_destination_folder():
     destination_folder = get_arguments()[1]
     return destination_folder
 
 
 def sync_directory():
-    for dirs in get_dirs():
-            shutil.copytree(dirs, get_destination())
-        #     if os.path.isfile(current_file):
-        #         shutil.copy(current_file, destination_f)
-        #         return True
-        # shutil.copytree(dir_f, destination_f)
+    source_root = get_arguments()[0]
+    source_folders = get_folders(source_root)
+    source_files = get_files(source_root)
+
+    destination_root = get_arguments()[1]
+    destination_file = get_files(destination_root)
+    destination_folder = get_folders(destination_root)
+
+    [print("source_file: ", item) for item in source_files]
+    [print("source_folder: ", item) for item in source_folders]
+    [print("destination_file: ", item) for item in destination_file]
+    [print("destination_folder: ", item) for item in destination_folder]
+
+    for dirs in source_files:
+        if dirs not in destination_folder:
+            shutil.copytree(dirs, destination_root)
     print("Synchronisation is starting!")
 
 
 if __name__ == '__main__':
     # directly unpack the returned tuple of the function
     # and store them in the function param
-    [print("file_item: ", x) for x in get_files()]
-    [print("folder_item: ", x)for x in get_dirs()]
+    # [print("file_item: ", x) for x in get_files(get_arguments()[0])]
+    # [print("folder_item: ", x) for x in get_folders(get_arguments()[0])]
     # [print(x) for x in get_arguments()]
-    # sync_directory()
+    sync_directory()
 
 
 
