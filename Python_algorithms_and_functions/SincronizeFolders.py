@@ -48,11 +48,6 @@ def get_files(source_dir):
     return file_list
 
 
-def get_destination_folder():
-    destination_folder = get_arguments()[1]
-    return destination_folder
-
-
 def sync_directory():
     source_root = get_arguments()[0]
     source_folders = get_folders(source_root)
@@ -67,9 +62,11 @@ def sync_directory():
     [print("destination_file: ", item) for item in destination_file]
     [print("destination_folder: ", item) for item in destination_folder]
 
-    for dirs in source_files:
-        if dirs not in destination_folder:
-            shutil.copytree(dirs, destination_root)
+    for root, dirs, files in walk(source_root):
+        for folder in dirs:
+            if folder not in destination_root:
+                item_to_copy = join(destination_root, folder)
+                shutil.copytree(destination_root, item_to_copy)
     print("Synchronisation is starting!")
 
 
