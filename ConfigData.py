@@ -3,13 +3,11 @@
     Representing local paths for different file
 """
 import xmltodict
-from pathlib import Path
+import os
 from Python_files_manipulation.FileManipulation import FileManipulation
 from Python_files_manipulation.JSONManipulation import JSONManipulation
 
-projectPath = Path('C:\Learning_Python_Scripts')
-CONFIGFILE = 'config.xml'
-
+CONFIGFILE = "config.xml"
 BASE_TAG = "config"
 
 # xml parent tags
@@ -22,8 +20,8 @@ CONFIG_INPUT_LIST = ["input_csv_file", "input_json_file", "input_xml_file", "inp
 CONFIG_OUTPUT_LIST = ["output_csv_file", "output_json_file", "output_xml_file", "output_other_file"]
 
 # create an expected dictionary formed by expected xml tabs
-CONFIG_MAPPING.update({INPUT_DIR: CONFIG_INPUT_LIST})
-CONFIG_MAPPING.update({OUTPUT_DIR: CONFIG_OUTPUT_LIST})
+input_lis = CONFIG_MAPPING.setdefault(INPUT_DIR, CONFIG_INPUT_LIST)
+output_lis = CONFIG_MAPPING.setdefault(OUTPUT_DIR, CONFIG_OUTPUT_LIST)
 
 
 class ConfigData:
@@ -41,25 +39,36 @@ class ConfigData:
         return ConfigData.config
 
     def __init__(self):
-        self.read_from_config_file()
         self._paramDict = {}
+        self.read_from_config_file()
+        self._parse_config_parent_tag()
 
     def read_from_config_file(self):
-        config_file = projectPath / CONFIGFILE
-        if config_file.exists() and config_file.__sizeof__():
+        config_file = os.path.join(os.path.dirname(os.path.realpath(__file__)), CONFIGFILE)
+        config_ok = True
+
+        if os.path.isfile(config_file) and config_file.__sizeof__():
             try:
-                conf_file = FileManipulation(config_file).read_file()
-                xml_into_dict = xmltodict.parse(conf_file, attr_prefix='', cdata_key='')
-                if not xml_into_dict.__contains__(BASE_TAG):
-                    print("missing base tag {}".format(BASE_TAG))
-                    return False
-                for parent_tag in CONFIG_MAPPING.keys():
-                    self._parse_config_parent_tag(xml_into_dict[BASE_TAG], parent_tag)
-                return xml_into_dict
+                with open(config_file) as cf:
+                    # exclude returned attributes from the returned xml
+                    xml_into_dict = xmltodict.parse(cf.read(), attr_prefix='', cdata_key='')
+                    if not xml_into_dict.__contains__(BASE_TAG):
+                        print("readConfigFile method missing base tag {}".format(BASE_TAG))
+                        return False
+                    for parent_tag in CONFIG_MAPPING.keys():
+                        print("CONFIG_MAPPING.keys():\n", xml_into_dict[BASE_TAG])
+                        resultErrorCode = self._parse_config_parent_tag(xml_into_dict[BASE_TAG], parent_tag)
+                        if not resultErrorCode:
+                            config_ok = False
+                print("Config params successfully read: \n%s", self._paramDict)
             except Exception as e:
+                config_ok = False
                 return str(e)
         else:
-            print("File {} not found".format(CONFIGFILE))
+            print("File {} not found".format(self.CONFIGFILE))
+        if not config_ok:
+            print("Please verify that your config file contains "
+                  "all the expected keys under the base tag")
 
     def _parse_config_parent_tag(self, doc, parent_tag):
         """
@@ -67,49 +76,39 @@ class ConfigData:
         :param parent_tag BASE_TAB child including other child division of the xml
         :return result code :
         """
-        MISSING_ERROR_CODE = -1
-        EXTRA_ERROR_CODE = 1
-        ACTUAL_RESULT_CODE = 0
-
+        result_code = True
         if not doc.__contains__(parent_tag):
             print("The tag {} is missing from input file".format(parent_tag))
-            return MISSING_ERROR_CODE
+            result_code = False
+            return result_code
 
         actual_dict_key = doc.get(parent_tag)
         expected_dict_key = CONFIG_MAPPING.get(parent_tag)
 
-        if actual_dict_key.keys().__len__() > expected_dict_key.__len__():
-            print("File has more config keys! Expected {0} Actual {1}".format(expected_dict_key.__len__(),
-                                                                              actual_dict_key.keys().__len__()))
-            ACTUAL_RESULT_CODE = EXTRA_ERROR_CODE
-
-        if actual_dict_key.keys().__len__() < expected_dict_key.__len__():
-            print("File has less config keys! Expected {0} Actual {1}".format(expected_dict_key.__len__(),
-                                                                              actual_dict_key.keys().__len__()))
-            ACTUAL_RESULT_CODE = MISSING_ERROR_CODE
-
-        for expected_key in expected_dict_key:
-            if actual_dict_key.__contains__(expected_key):
-                self._paramDict[expected_key] = actual_dict_key.get(expected_key)
+        for exp_key in expected_dict_key:
+            if actual_dict_key.__contains__(exp_key):
+                self._paramDict[exp_key] = actual_dict_key.get(exp_key)
             else:
-                print("Expected key: {} is missing from the file ".format(expected_key))
-                ACTUAL_RESULT_CODE = MISSING_ERROR_CODE
-        return ACTUAL_RESULT_CODE
+                print("Expected key: {} is missing from the file ".format(exp_key))
+                result_code = False
+        return result_code
 
-    def get_value(self, dict_key):
+    def get_value(self):
         """
         :param dict_key: return a desired value from the valid dictionary defined as constants
         :return: "" string is the parameter value is not found
         """
-        if self._paramDict.__contains__(dict_key):
-            return self._paramDict.get(dict_key)
+        if self._paramDict.__contains__(self):
+            return self._paramDict.get(self)
         return ""
 
 
 if __name__ == "__main__":
     xml_doc = ConfigData.read_from_config_file("")
     print(xml_doc)
-    print(ConfigData.get_value(CONFIG_INPUT_LIST[0]))
+    csv_file = CONFIG_INPUT_LIST[0]
+    print(csv_file)
+    # print(ConfigData.get_value(csv_file))
     # JSONManipulation.pretty_print_json_data(xml_doc)
     print("Expected dictionary tab values")
     JSONManipulation.pretty_print_json_data(CONFIG_MAPPING)
