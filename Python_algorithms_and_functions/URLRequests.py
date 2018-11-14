@@ -2,8 +2,7 @@
 
 """
 Modificati 02-requests_full.py sa afiseze pentru fiecare resident titlul filmelor in care a aparut (pot fi ordonate).
-
-Aveti grija, daca faceti asta pentru toate planetele o sa dureze, puteti limita scriptul sa ruleze doar pentru cateva planete.
+Aveti grija, daca faceti asta pentru toate planetele o sa dureze, puteti limita scriptul sa ruleze doar pentru cateva planete
 """
 
 import json
@@ -63,44 +62,54 @@ def get_planet_name_and_residents_num(planet_data):
 
 
 def get_residents_films(planet_data):
-    resident_list = [("Resident number: " + str(index), x['residents']) for index, x in enumerate(planet_data, start=1)]
-    resident_movies = []
-    for resident, rez_request in resident_list:
-        for movie_req in rez_request:
+    """
+        :param planet_data accepts a list of tuples in order to extract relevant data
+        :return a list of tuples
+    """
+    resident_list = [("planet: " + str(x['name']), x['residents']) for x in planet_data]
+    resident_movies_list = []
+    for planet_name, rez_request in resident_list:
+        for index, movie_req in enumerate(rez_request, start=1):
             data = requests.get(movie_req)
-            response = json.dumps(data.text)
+            response = json.loads(data.text)
             resident_film = response['films']
-            resident_movies.append(resident_film)
-    return resident_movies
+            resident_film = ("Resident no: {} ".format(index) + "from " + str(planet_name), resident_film)
+            resident_movies_list.append(resident_film)
+    return resident_movies_list
 
-# residents_names = []
-# for url in planet['residents']:
-#     residents_names.append(get_name(url))
-#
-#     planets_and_residents.append((name, residents_count, residents_names))
-#
-# planets_and_residents.sort(key=lambda x: x[1], reverse=True)
-#
-# for name, residents_count, residents in planets_and_residents:
-#     print("{:15} -> {}".format(name, residents_count))
-#
-#     for name_r in residents:
-#         print("\t - ", name_r)
-#
-# print("\n\n\nPlanets with more then on resident\n")
-#
-# # more_then_1 = filter(lambda x: x[1] > 1, planets_and_residents)
-# more_then_1 = [x for x in planets_and_residents if x[1] > 1]
-# for name, residents_count, residents in more_then_1:
-#     print("{:15} -> {}".format(name, residents_count))
-#
-#     for name_r in residents:
-#         print("\t - ", name_r)
+
+def get_movie_titles(movie_links):
+    """
+        Method used in combination with get_residents_films
+        :param movie_links is a list of movie links
+        :return a list of tuples formed by resident and movie_list
+        """
+    all_resident_movie_list = []
+    for resident, movie_link in movie_links:
+        movie_list = _get_titles(movie_link)
+        all_resident_movie_list.append((resident, movie_list))
+    return all_resident_movie_list
+
+
+def _get_titles(movie_links):
+    """
+    :param movie_links must be a list
+    Private method used for get_movie_titles
+    collect from each response the title of movie and store them in a list
+    :return resident_movie_list: as a list"""
+    if len(movie_links) > 0:
+        resident_movie_list = []
+        for movie in movie_links:
+            movie_titles = requests.get(movie)
+            movie_titles = json.loads(movie_titles.text)
+            resident_movie_list.append(movie_titles['title'])
+    return resident_movie_list
 
 
 if __name__ == "__main__":
     """Returns a list of tuples with the name of planets and the corresponding residents"""
     planets_data = get_data_for_num_of_planets(1)
-    # pprint.pprint(planets_data)
-    pprint.pprint(get_residents_films(planets_data))
+    print(len(planets_data))
+    residents_movie = get_residents_films(planets_data)
+    [print(x) for x in get_movie_titles(residents_movie)]
     # pprint.pprint(get_planet_name_and_residence_num(planets_data))
