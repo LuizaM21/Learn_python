@@ -8,17 +8,23 @@
 import sys
 from os.path import isdir, join, abspath
 from os import listdir, walk
+from inspect import signature
 import shutil
+
+input_dir = r"C:\11_synchronize_directories\input_directory"
+output_dir = r"C:\11_synchronize_directories\output_directory"
 
 
 # ger directory paths from IDE configuration in -> Run\Edit configurations\Parameters
-def get_arguments():
-    if len(sys.argv) < 3:
+def get_arguments(inp_dir, out_dir):
+    params = signature(get_arguments)
+    params = params.parameters.items()
+    if len(params) < 2:
         print("Function does not have 2 parameters")
         sys.exit(1)
 
-    dir_1 = sys.argv[1]
-    dir_2 = sys.argv[2]
+    dir_1 = inp_dir
+    dir_2 = out_dir
 
     # verify if first param is a folder director
     if not isdir(dir_1):
@@ -35,7 +41,7 @@ def get_arguments():
 
 
 def get_folders(source_dir):
-    dir_list = [abspath(join(source_dir, dir_f)) for dir_f in listdir(source_dir) if isdir(join(source_dir, dir_f))]
+    dir_list = [dir_f for dir_f in listdir(source_dir) if isdir(join(source_dir, dir_f))]
     return dir_list
 
 
@@ -49,25 +55,25 @@ def get_files(source_dir):
 
 
 def sync_directory():
-    source_root = get_arguments()[0]
+    source_root = get_arguments(input_dir, output_dir)[0]
     source_folders = get_folders(source_root)
     source_files = get_files(source_root)
 
-    destination_root = get_arguments()[1]
+    destination_root = get_arguments(input_dir, output_dir)[1]
+    destination_folders = get_folders(destination_root)
     destination_file = get_files(destination_root)
-    destination_folder = get_folders(destination_root)
 
     [print("source_file: ", item) for item in source_files]
     [print("source_folder: ", item) for item in source_folders]
     [print("destination_file: ", item) for item in destination_file]
-    [print("destination_folder: ", item) for item in destination_folder]
+    [print("destination_folder: ", item) for item in destination_folders]
 
-    for root, dirs, files in walk(source_root):
-        for folder in dirs:
-            if folder not in destination_root:
-                item_to_copy = join(destination_root, folder)
-                shutil.copytree(destination_root, item_to_copy)
     print("Synchronisation is starting!")
+    for folder in source_folders:
+        if folder not in destination_folders:
+            item_to_copy = join(destination_root, folder)
+            shutil.copytree(destination_root, item_to_copy)
+    print("Synchronisation has finished!")
 
 
 if __name__ == '__main__':

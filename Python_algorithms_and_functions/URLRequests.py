@@ -109,7 +109,7 @@ def _get_titles(movie_links):
 if __name__ == "__main__":
     """Returns a list of tuples with the name of planets and the corresponding residents"""
     planets_data = get_data_for_num_of_planets(1)
-    print(len(planets_data))
+    print("Total planets: ", len(planets_data))
     residents_movie = get_residents_films(planets_data)
     [print(x) for x in get_movie_titles(residents_movie)]
     # pprint.pprint(get_planet_name_and_residence_num(planets_data))
