@@ -6,8 +6,8 @@
     the file will be deleted from the destination folder """
 
 import sys
-from os.path import isdir, join, abspath
-from os import listdir, walk
+from os.path import isdir, isfile, join, abspath
+from os import listdir
 from inspect import signature
 import shutil
 
@@ -41,16 +41,22 @@ def get_arguments(inp_dir, out_dir):
 
 
 def get_folders(source_dir):
-    dir_list = [dir_f for dir_f in listdir(source_dir) if isdir(join(source_dir, dir_f))]
+    dir_list = [dir_f for dir_f in listdir(source_dir)]
     return dir_list
 
 
 def get_files(source_dir):
     file_list = []
-    for dir_item, folder_item, file_item in walk(source_dir):
-        for f in file_item:
-            file_path = join(abspath(dir_item), f)
+    for file_item in listdir(source_dir):
+        current_f = join(abspath(source_dir), file_item)
+        if isfile(current_f):
+            file_path = join(abspath(source_dir), file_item)
             file_list.append(file_path)
+        else:
+            for file in listdir(current_f):
+                current_file = join(current_f, file)
+                if isfile(current_file):
+                    file_list.append(current_file)
     return file_list
 
 
@@ -58,21 +64,29 @@ def sync_directory():
     source_root = get_arguments(input_dir, output_dir)[0]
     source_folders = get_folders(source_root)
     source_files = get_files(source_root)
+    # [print("source_file: ", x) for x in source_files]
 
     destination_root = get_arguments(input_dir, output_dir)[1]
     destination_folders = get_folders(destination_root)
     destination_file = get_files(destination_root)
 
-    [print("source_file: ", item) for item in source_files]
-    [print("source_folder: ", item) for item in source_folders]
-    [print("destination_file: ", item) for item in destination_file]
-    [print("destination_folder: ", item) for item in destination_folders]
-
     print("Synchronisation is starting!")
-    for folder in source_folders:
-        if folder not in destination_folders:
-            item_to_copy = join(destination_root, folder)
-            shutil.copytree(destination_root, item_to_copy)
+    # Copy the entire folder if the folder exists in source_dir but not in the destination_dir
+    for item_to_copy in source_folders:
+        current_item = join(abspath(source_root), item_to_copy)
+        if isdir(current_item):
+            if item_to_copy not in destination_folders:
+                destination_item = join(abspath(destination_root), item_to_copy)
+                shutil.copytree(current_item, destination_item)
+                print("Folder: {} has been copied in location: {}".format(item_to_copy, destination_item))
+            else:
+                print("Folder: {} already exists in location: {}".format(item_to_copy, destination_root))
+        if isfile(current_item):
+            if item_to_copy not in destination_folders:
+                shutil.copy(current_item, destination_root)
+                print("File: {} has been copied in location: {}".format(item_to_copy, destination_root))
+            else:
+                print("File: {} already exists in location: {}".format(item_to_copy, destination_root))
     print("Synchronisation has finished!")
 
 
