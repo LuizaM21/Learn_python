@@ -12,7 +12,7 @@ second_item_from_the_EOL = players_list[-2]
 slice_elements = players_list[0:2]
 
 
-"""------------------List append/insert/pop/sort/reverse/remove/del---------"""
+"""------------------List append/insert/pop/sort/sorted/reverse/remove/del---------"""
 list_numbers = [3, 6, 2, 13, 1, 99, 100]
 print('initial list\n' + str(list_numbers))
 # add element into the list on the last position
@@ -26,7 +26,10 @@ print("Remover last element in a list\n" + str(list_numbers))
 # add element on the list at a specific position
 list_numbers.insert(2, 50)
 print('Insert element at a specific position\n' + str(list_numbers))
+# makes a permanent modification of the list
 print('Sort ascendant the new list:\n' + str(sortAlg.sort_vector(list_numbers)))
+# for a temporary sorted list we can use sorted method
+print("temporally sorted list in descending order\n:", str(sorted(list_numbers, reverse=True)))
 
 
 # display 5 elements from the list
