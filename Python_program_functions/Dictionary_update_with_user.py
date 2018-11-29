@@ -28,6 +28,12 @@ def update_a_dictionary():
             continue
         else:
             country = False
+    return countries_details
+
+
+# TODO:  create method to write created JSON into a file
+def write_json_into_file(json_content):
+    pass
 
 
 if __name__ == '__main__':
