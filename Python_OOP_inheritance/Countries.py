@@ -21,5 +21,13 @@ class Countries:
         self.resident_num = residents_num
 
     def set_country_demographics(self, has_mountains, has_sea):
+        """Set the value to True if the country has mountains and sea"""
         self.has_mountains = has_mountains
         self.has_sea = has_sea
+
+class Country(Countries):
+    """Represent all the particularities that a class has"""
+
+
+if __name__ == '__main__':
+    pass
