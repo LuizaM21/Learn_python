@@ -55,7 +55,7 @@ class EnglandCountry(Countries):
 
         # bounds the parent class init method with the inherited class init method
         super().__init__(capital_city, residents_number, mountains, sea)
-        self.city_details = CityDetails(capital_city, "North-East", True)
+        self.city_details = CityDetails(capital_city, "South-East", True)
 
     def get_england_extra_details(self):
         england_details = "Country has ocean opening: {0}\n" \
