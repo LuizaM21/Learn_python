@@ -2,19 +2,38 @@ import threading
 import time
 import requests
 
-class MultiThreadingCalc(threading.Thread):
-    def __init_(self, name, sleep_time):
-        self.name = name
-        self.sleep = sleep_time
+_sum = 0
 
-    _sum = 0
+
+class MultiThreadingCalc(threading.Thread):
+    def __init__(self, name, lock, sleep_time=2):
+        super(MultiThreadingCalc, self).__init__()
+        self._name = name
+        self._sleep = sleep_time
+        self._lock = lock
 
     def run(self):
         global _sum
-        time.sleep(self.sleep)
-        _sum = _sum + self.name
-        to_print = "{} {}".format(self.name, _sum)
+        time.sleep(self._sleep)
+        to_print = "{} {}".format(self._name, time.time())
+
+        self._lock.acquire()
         print(to_print)
+        _sum = _sum + self.name
+        to_print = "{} S: {}".format(self.name, _sum)
+        print(to_print)
+        self._lock.release()
+
+
+def main():
+    print("Create threads")
+    lock = threading.Lock()
+    threads = []
+    for i in range(5):
+        th = MultiThreadingCalc(i, lock, 1)
+        threads.append(th)
+        th.start()
+        th.join()
 
 
 class WikiThread:
@@ -34,5 +53,5 @@ class WikiThread:
 
 
 if __name__ == '__main__':
-    th_1 = MultiThreadingCalc(1)
+    main()
 
