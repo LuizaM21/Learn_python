@@ -10,8 +10,9 @@ import requests
 import bs4
 
 START_URL = "http://wikipedia.com"
+# TODO: use lock, acquire and release for each thread using a que manager from Threading class
 QUEUE = {START_URL}
-MAX_CRAWL = 10
+MAX_CRAWL = 4
 NR_THREADS = 5
 THREADS = []
 URL_SEEN = set()
@@ -49,6 +50,17 @@ def parse_links(url, soup):
             QUEUE.add(following_link)
 
 
+def count_words(text):
+    """"Count the frequency of words from a specific link"""
+    words = {}
+    for word in text.split():
+        # TODO: How to verify without if -> hing usage of setDefault of dict.get()
+        if word not in words.keys():
+            words[word] = 0
+        words[word] = words[word] + 1
+    return {key: value for key, value in words.items() if value >= 2}
+
+
 class Spider(threading.Thread):
     """Spider thread."""
     # overwrite the init function of threads
@@ -74,6 +86,9 @@ class Spider(threading.Thread):
 
             try:
                 page = get_page(url)
+                total_words = count_words(page.text)
+                # TODO : filter relevant words into the dict count
+                {print("word: {}     total: {}".format(key, value)) for key, value in total_words.items()}
             except Exception as exc:
                 print("Skip :", exc)
                 continue
