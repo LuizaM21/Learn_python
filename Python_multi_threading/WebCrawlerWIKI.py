@@ -8,6 +8,7 @@ import time
 import pprint
 import requests
 import bs4
+import re
 
 START_URL = "http://wikipedia.com"
 # TODO: use lock, acquire and release for each thread using a que manager from Threading class
@@ -54,8 +55,8 @@ def count_words(text):
     """"Count the frequency of words from a specific link"""
     words = {}
     for word in text.split():
-        # TODO: How to verify without if -> hing usage of setDefault of dict.get()
-        if word not in words.keys():
+        sorted_word = filter(lambda w: re.match("(\b[^\d\W]+\b)", word))
+        if sorted_word not in words.keys():
             words[word] = 0
         words[word] = words[word] + 1
     return {key: value for key, value in words.items() if value >= 2}
@@ -63,6 +64,7 @@ def count_words(text):
 
 class Spider(threading.Thread):
     """Spider thread."""
+
     # overwrite the init function of threads
     def __init__(self, name, queue):
         threading.Thread.__init__(self)
@@ -81,7 +83,7 @@ class Spider(threading.Thread):
 
             if url in URL_SEEN or url is None:
                 continue
-            print("{:5} - [{:3} from {:4}]Crawl {:} ...".format(
+            print("{:5} - [{:3} from {:4}] Crawl {:} ...".format(
                 self.name, len(self.data), len(self.queue), url[:-100]), end="")
 
             try:
