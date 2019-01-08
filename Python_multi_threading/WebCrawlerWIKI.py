@@ -55,8 +55,10 @@ def count_words(text):
     """"Count the frequency of words from a specific link"""
     words = {}
     for word in text.split():
-        sorted_word = filter(lambda w: re.match("(\b[^\d\W]+\b)", word))
-        if sorted_word not in words.keys():
+        # print("match word: ", re.match("([^\d\W]+)", word), word)
+        if re.fullmatch("([a-zA-Z]+)", word) is None:
+            continue
+        if word not in words.keys():
             words[word] = 0
         words[word] = words[word] + 1
     return {key: value for key, value in words.items() if value >= 2}
