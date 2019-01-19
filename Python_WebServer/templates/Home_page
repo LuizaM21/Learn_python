@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<title>HomePage</title>
+<body>
+
+<h1>Mihaiuc Luiza</h1>
+<p>This is a paragraph</p>
+
+<h2>HTML Images</h2>
+<p>This is a image</p>
+
+<img src="w3schools.jpg" alt="W3Schools.com" width="104" height="142">
+<button>Click me</button>
+<button>Click me</button>
+
+</body>
+</html>

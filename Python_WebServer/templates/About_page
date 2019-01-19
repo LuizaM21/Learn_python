@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<title>AboutPage</title>
+<body>
+
+<h1 style="color:red; text-align:center;">About Page</h1>
+<p>Luiza Mihaiuc</p>
+
+<h2 style="color:purple;">HTML buttons</h2>
+<hr>
+<button>Click me</button>
+<hr>
+<button>Click me</button>
+
+</body>
+</html>

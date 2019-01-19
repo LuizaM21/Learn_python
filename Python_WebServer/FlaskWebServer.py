@@ -17,18 +17,16 @@ class Student(object):
     def get_as_dict(self):
         """Returns the representation of an object in a json format"""
         return {"name": self.student_name,
-                "age": self.student_age}
+                "age": self.student_age,
+                "id": self.id}
 
 
 """Create three students objects in a list"""
 STUDENTS = [
-    Student("John", 11),
-    Student("Mathew", 12),
-    Student("Diana", 14)]
-
-
-def get_json():
-    return {"students": [student.student_age for student in STUDENTS]}
+    Student("John", 21),
+    Student("Mathew", 22),
+    Student("Diana", 24),
+    Student("Maria", 25)]
 
 
 def as_json(func):
@@ -43,7 +41,7 @@ def as_json(func):
 
 
 def get_students_id():
-    return {'student': [student.id for student in STUDENTS]}
+    return {'students': [{'id': student.id, 'name': student.student_name, 'age': student.student_age} for student in STUDENTS]}
 
 
 pprint.pprint(get_students_id())
@@ -86,14 +84,11 @@ def students_with_id(resource_id=None):
         except:
             flask.abort(400)  # raise bad request
     elif request.method == 'DELETE':
-        student_found = None
         for student in STUDENTS:
-            if student.id == student_found:
-                student_found = student
-        if student_found is None:
+            if student.id == resource_id:
+                STUDENTS.remove(student)
+                return 'ok'
             flask.abort(400)
-        STUDENTS.remove(student_found)
-        return 'ok'
 
 
 if __name__ == '__main__':
