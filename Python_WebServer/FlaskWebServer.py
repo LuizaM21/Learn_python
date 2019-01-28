@@ -2,7 +2,7 @@ import json
 import uuid
 import pprint
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 import flask
 
 app = Flask(__name__)
@@ -36,7 +36,6 @@ def as_json(func):
             response_text = flask.make_response(json.dumps(resp))
             response_text.headers['Content-type'] = 'text/json'
         return response_text
-
     return new_func
 
 
@@ -48,13 +47,13 @@ pprint.pprint(get_students_id())
 
 
 @app.route("/student/<resource_id>", methods=['GET', 'PUT', 'POST', 'PATCH', 'DELETE'])
-@app.route("/student", methods=["GET", "POST"])
+@app.route("/student", methods=['GET'])
 @as_json
 def students_with_id(resource_id=None):
     #  get an existent source
     if request.method == "GET":
         if resource_id is None:
-            return get_students_id()
+            return render_template('index.html')
         for student in STUDENTS:
             if student.id == resource_id:
                 return student.get_as_dict()
@@ -89,6 +88,11 @@ def students_with_id(resource_id=None):
                 STUDENTS.remove(student)
                 return 'ok'
             flask.abort(400)
+
+
+# @app.route("/gimme")
+# def gimme():
+#     return render_template('index.html')
 
 
 if __name__ == '__main__':
