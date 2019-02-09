@@ -37,10 +37,17 @@ class GeniosServer:
         return self.site_link
 
     def get_all_cubes_types(self):
-        """Return all the cube models from the front page"""
+        """Return all the cube models name and links from the front page"""
         site_content = bs4.BeautifulSoup(self.site_response.text, features="html.parser")
         menu_list = site_content.findAll("ul", attrs={'id': 'menu-marci'})[0].findAll("li")
-        return menu_list
+
+        cube_menu = {}
+        for item in menu_list:
+            current_item = str(item.find("a")).split('"')
+            cube_link = current_item[1]
+            cube_name = current_item[2].replace("</a>", "").replace(">", "")
+            cube_menu[cube_name] = cube_link
+        return cube_menu
 
 
 if __name__ == '__main__':
@@ -52,7 +59,7 @@ if __name__ == '__main__':
     # pprint.pprint(site_header)
     # pprint.pprint(site.get_site_link_lists())
 
-    [print(x) for x in site.get_all_cubes_types()]
+    pprint.pprint(site.get_all_cubes_types())
 
 
 
