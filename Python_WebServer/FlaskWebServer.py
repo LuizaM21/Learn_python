@@ -35,7 +35,8 @@ def as_json(func):
         if isinstance(resp, dict):
             response_text = flask.make_response(json.dumps(resp))
             response_text.headers['Content-type'] = 'text/json'
-        return response_text
+            return response_text
+        return resp
 
     return new_func
 
@@ -81,8 +82,9 @@ def students_with_id(resource_id=None):
             new_student.id = student_found.id
             STUDENTS.append(new_student)
             return 'ok'
-        except:
-            flask.abort(400)  # raise bad request
+        except Exception as esc:
+            flask.abort(400)
+            return esc  # raise bad request
     elif request.method == 'DELETE':
         for student in STUDENTS:
             if student.id == resource_id:
