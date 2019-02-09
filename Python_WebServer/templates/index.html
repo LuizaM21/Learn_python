@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Students</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/css/bootstrap.css" rel="stylesheet" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+  </head>
+  <body>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">nr</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Id</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody">
+  </tbody>
+</table>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.bundle.js" crossorigin="anonymous"></script>
+<script>
+{%raw%}
+    $(function() {
+        $('#tableBody').empty();
+        $.getJSON("/test", function( data ) {
+          students = data.student;
+		  var index = 0;
+          $.each( data.student, function( key, val ) {
+			index++;
+            var str = '<tr><td>' + index + '</td><td>' + val.name + '</td><td>' + val.age + '</td><td>' + val.id + '</td></tr>';
+
+            $('#tableBody').append(str);
+          });
+        });
+    });
+ {%endraw%}
+</script>
+</body>
+</html>

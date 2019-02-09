@@ -2,7 +2,7 @@ import json
 import uuid
 import pprint
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 import flask
 
 app = Flask(__name__)
@@ -91,6 +91,11 @@ def students_with_id(resource_id=None):
                 STUDENTS.remove(student)
                 return 'ok'
             flask.abort(400)
+
+
+# @app.route("/gimme")
+# def gimme():
+#     return render_template('index.html')
 
 
 if __name__ == '__main__':
