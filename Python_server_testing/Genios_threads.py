@@ -21,8 +21,6 @@ URL_lists = ['https://www.genios.ro/catalog/moyu/',
 
 def get_page_content(site_url):
     """Loads html content of the site"""
-    process_id = os.getpid()
-    print("process_id:", process_id)
     with urllib.request.urlopen(site_url) as response:
         if 'text/html' in response.headers['Content-Type']:
             current_header = bs4.BeautifulSoup(response.read(), features="html.parser").find(id="header")
@@ -34,17 +32,18 @@ if __name__ == '__main__':
 
     process_list = []
     for site in URL_lists:
+
         start_time = timer()
         process = Process(target=get_page_content, args=(site,))
         process_list.append(process)
-
         process.start()
         end_time = timer()
         duration = end_time - start_time
-        print("\ncalled link: {2}\nprocess name: {0}\nduration: {1:.2f} seconds\n".format(process.name, duration, site))
+        print("\ncalled link: {0}\nprocess name: {1}\nprocess duration: {2:.3f}"
+              .format(site, process.name, duration))
 
-    for proc in process_list:
-        proc.join()
+    for process_ in process_list:
+        process_.join()
 
 
 
