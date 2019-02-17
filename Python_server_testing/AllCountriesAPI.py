@@ -2,6 +2,7 @@
 import requests
 import pprint
 import simplejson as json
+from timeit import default_timer as timer
 
 
 class JsonAPI:
@@ -12,11 +13,15 @@ class JsonAPI:
     def get_all_countries_details(self):
         """Get the API response and evaluate the response as a valid JSON content
         :return all_countries_response"""
+        start_time = timer()
         api_response = requests.get(self.api_request + "country/get/all")
         if api_response.ok:
             try:
                 all_countries_response = json.loads(api_response.text)
-                return all_countries_response
+                end_time = timer()
+                duration = end_time - start_time
+                print("Request duration: {:.3f} seconds".format(duration))
+                return all_countries_response, duration
             except Exception as e:
                 print(e)
                 return
@@ -83,9 +88,9 @@ class JsonAPI:
 
 
 if __name__ == '__main__':
-    pprint.pprint(JsonAPI().get_all_countries_details())
-    pprint.pprint(JsonAPI("IND").get_specific_country_details())
-    print(JsonAPI().get_all_country_iso_2_code())
-    print(JsonAPI().get_all_country_iso_3_code())
-    print(JsonAPI().get_countries_total_number())
+    pprint.pprint(JsonAPI().get_all_countries_details()[0])
+    # pprint.pprint(JsonAPI("IND").get_specific_country_details())
+    # print(JsonAPI().get_all_country_iso_2_code())
+    # print(JsonAPI().get_all_country_iso_3_code())
+    # print(JsonAPI().get_countries_total_number())
 

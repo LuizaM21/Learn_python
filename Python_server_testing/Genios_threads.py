@@ -1,5 +1,4 @@
 from timeit import default_timer as timer
-import os
 
 import bs4
 import urllib.request
