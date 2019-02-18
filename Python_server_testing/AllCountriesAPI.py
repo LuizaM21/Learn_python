@@ -46,7 +46,7 @@ class JsonAPI:
         """:return total_number of the countries in the existent json response"""
         if self.get_all_countries_details():
             try:
-                countries_json = self.get_all_countries_details()
+                countries_json = self.get_all_countries_details()[0]
                 total_number = countries_json['RestResponse']['messages'][0]
                 return total_number
             except Exception as e:
@@ -59,7 +59,7 @@ class JsonAPI:
         """:return ISO 2 country code in a list"""
         if self.get_all_countries_details():
             try:
-                countries_json = self.get_all_countries_details()
+                countries_json = self.get_all_countries_details()[0]
                 total_records_message = countries_json['RestResponse']['messages'][0]
                 print("total_records_message: ", total_records_message)
 
@@ -76,7 +76,8 @@ class JsonAPI:
         """:return ISO 2 country code in a list"""
         if self.get_all_countries_details():
             try:
-                countries_json = self.get_all_countries_details()
+                # extract json part without duration by accesing only the first element of the tuple
+                countries_json = self.get_all_countries_details()[0]
                 iso_3_code_list = countries_json['RestResponse']['result']
                 iso_3_code_list = [x['alpha3_code'] for x in iso_3_code_list]
                 return iso_3_code_list
@@ -90,7 +91,7 @@ class JsonAPI:
 if __name__ == '__main__':
     pprint.pprint(JsonAPI().get_all_countries_details()[0])
     # pprint.pprint(JsonAPI("IND").get_specific_country_details())
-    # print(JsonAPI().get_all_country_iso_2_code())
+    print(JsonAPI().get_all_country_iso_2_code())
     # print(JsonAPI().get_all_country_iso_3_code())
     # print(JsonAPI().get_countries_total_number())
 
