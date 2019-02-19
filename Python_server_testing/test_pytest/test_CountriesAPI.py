@@ -7,6 +7,7 @@ from Python_files_manipulation import FileHandling
 
 country_config_csv = FileHandling.country_config_csv
 
+
 def test_countries_details_type():
     response = JsonAPI().get_all_countries_details()
     assert isinstance(response, dict)
