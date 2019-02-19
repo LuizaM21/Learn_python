@@ -5,7 +5,7 @@ from Python_server_testing.AllCountriesAPI import JsonAPI
 from Python_files_manipulation.CSVManipulation import CSVManipulation
 from Python_files_manipulation import FileHandling
 
-country_config_csv = FileHandling.country_config_csv
+country_config_csv = FileHandling.COUNTRY_CONFIG_CSV
 
 
 def test_countries_details_type():
