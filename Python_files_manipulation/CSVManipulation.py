@@ -3,7 +3,7 @@ import csv
 
 class CSVManipulation(object):
 
-    def __init__(self, input_file, output_file):
+    def __init__(self, input_file, output_file=""):
         self.input_file = input_file
         self.output_file = output_file
 
@@ -20,16 +20,16 @@ class CSVManipulation(object):
         """Read specific column from csv file"""
         try:
             with open('{}'.format(self.input_file), 'r') as csv_read:
-                csv_reader = csv.reader(csv_read)
-                # skip the first line
-                # next(csv_reader)
-                country_list = []
+                csv_reader = csv_read.read().splitlines()
+                # remove the first line with headers
+                del csv_reader[0]
+                column_list = []
                 for line in csv_reader:
-                    country_list.append(line[column_index])
-                print(country_list)
+                    line = line.split(",")
+                    column_list.append(line[column_index])
+                return column_list
         except FileNotFoundError:
             print("No such file or directory! ", self.input_file)
-        else:
             return
 
     def copy_csv_column_into_new_file(self, column_index: object):
