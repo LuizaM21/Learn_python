@@ -1,34 +1,72 @@
-
 import sys
+import os
 import pprint
 import simplejson as json
-from pathlib import Path
+# from Python_files_manipulation import FileHandling
 
+# all_countries_json = FileHandling.ALL_COUNTRIES_JSON
+# quiz_json_file = FileHandling.QUIZ_JSON
 
-global_folder_path = Path(r'E:\01_home_Learning_python\Python_project_files\Input_files\JSON_files')
-all_countries_json = 'GetAllCountries.json'
-quiz_json_file = 'quiz.json'
+COUNTRY_DETAILS = [
+    ("Nepal", "Kathmandu",
+     ("Kathmandu", "Patan", "Butwal"), "RUP",
+     {"North": "China",
+      "South": "India",
+      "East": "India",
+      "West": "China"}),
+
+    ("China", "Beijing",
+     ("Beijing", "Shanghai", "Shenzehn", "Hong Kong"), "YEN",
+     {"North": "Mongolia, Russia",
+      "South": "India, Nepal, Bhutan, Myanmar, Laos, Vietnam",
+      "East": "Taiwan, South Korea",
+      "West": "Kazakhstan, Kyrgyzstan, Tajikistan India"}),
+
+    ("United States", "Washington",
+     ("New York", "	Los Angeles", "Chicago", "Houston"), "USD",
+     {"North": "Canada",
+      "South": "Mexico",
+      "East": "Atlantic Ocean",
+      "West": "Pacific Ocean"}),
+
+    ("England", "London",
+     ("London", "York", "Bristol", "NewCastle"), "GBP",
+     {"North": "Scotland, North Sea",
+      "South": "English Channel",
+      "East": "North Sea",
+      "West": "Wales"}),
+]
 
 
 class JSONManipulation(object):
 
     def __init__(self, json_file):
-        self.input_file = global_folder_path / json_file
+        self.input_file = json_file
 
     @staticmethod
-    def create_countries_json(country_name, *towns, currency=None, country={}, **country_neighbours):
-        country.setdefault(country_name, {})
+    def create_countries_json(country_name, capital, towns, currency, country_neighbours={}):
+        country = {}
+        country.setdefault("Country_name", country_name)
+        country.setdefault("Capital", capital)
+        country.setdefault("Towns", list(towns))
+        country.setdefault("Currency", currency)
+        country.setdefault("Country neighbours", country_neighbours)
         return country
 
     def read_json_file(self):
-        if self.input_file.exists():
-            print("Read JSON from path: {}".format(self.input_file.absolute()))
-            with open(str(self.input_file), 'r', encoding="utf-8") as input_json:
-                inp_data = input_json.read()
-                inp_data = json.loads(inp_data)
-                return inp_data
+        if os.path.isfile(self.input_file) and os.stat(self.input_file).st_size != 0:
+            try:
+                print("Read JSON from path: {}".format(self.input_file))
+                with open(str(self.input_file), 'r', encoding="utf-8") as input_json:
+                    inp_data = input_json.read()
+                    inp_data = json.loads(inp_data)
+                    return inp_data
+            except Exception as e:
+                print(e)
+                return ""
         else:
-            print("File not found on path: {}".format(self))
+            print("File not found under: {}".format(self.input_file))
+            return ""
 
     @staticmethod
     def pretty_print_json_data(input_file, sort=True, indents=4):
@@ -36,17 +74,15 @@ class JSONManipulation(object):
             print(json.dumps(json.loads(input_file), sort_keys=sort, indent=indents))
         else:
             print(json.dumps(input_file, sort_keys=sort, indent=indents))
-        return None
+            return None
 
 
 if __name__ == "__main__":
-    country_list = ["Nepal", "China", "United States", "England"]
-    for x in country_list:
-        country_json = JSONManipulation.create_countries_json(x)
-    country_json = [JSONManipulation.create_countries_json(x) for x in country_list]
-    pprint.pprint(country_json)
-    sys.exit()
-    print('\nDisplay {} file '.format(all_countries_json))
+
+    # country_json = [JSONManipulation.create_countries_json(*x) for x in COUNTRY_DETAILS]
+    # pprint.pprint(country_json)
+    # sys.exit()
+
     json_obj = JSONManipulation(all_countries_json)
     countries_json = json_obj.read_json_file()
     print(countries_json)
@@ -73,7 +109,3 @@ if __name__ == "__main__":
     # print(quiz_json_obj)
     # JSONManipulation.pretty_print_json_data(quiz_json_obj)
     sys.exit()
-
-
-
-

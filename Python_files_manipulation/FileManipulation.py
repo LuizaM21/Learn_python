@@ -31,7 +31,7 @@ class FileManipulation:
             except Exception as e:
                 print(e)
         else:
-            print("No such file or directory! ", self.input_file)
+            print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
 
     def write_file(self):
         """Create a file and write into it"""
@@ -45,9 +45,10 @@ class FileManipulation:
                     return True
             except Exception as e:
                 print(e)
-                return
+                return ""
         else:
-            print("No such file or directory! ", self.input_file)
+            print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
+            return ""
 
     def copy_text_file(self, output_file):
         """Create a copy of an existent file"""
@@ -67,7 +68,7 @@ class FileManipulation:
             except Exception as e:
                 print(e)
         else:
-            print("No such file or directory! ", self.input_file)
+            print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
             return
 
     def copy_binary_file(self, output_file):
@@ -83,11 +84,13 @@ class FileManipulation:
                             return True
                     else:
                         print("FILE ALREADY EXIST UNDER:\n\t{}".format(output_file))
+                        return ""
             except Exception as e:
                 print(e)
-                return
+                return ""
         else:
-            print("No such file or directory! ", self.input_file)
+            print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
+            return ""
 
     def add_to_existent_file(self):
         """Add content to existent csv file"""
@@ -101,21 +104,26 @@ class FileManipulation:
                 return True
             except Exception as e:
                 print(e)
-                return
+                return ""
         else:
             print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
+            return ""
 
     def count_words(self):
         """Count the number of word in a file"""
-        try:
-            with open('{}'.format(self.input_file)) as f:
-                content = f.read()
-                return content
-        except FileNotFoundError:
-            print("No such file or directory! ", self.input_file)
-        finally:
-            words = content.split()
-            number_words = len(words)
-            return number_words
+        if os.path.isfile(self.input_file) and os.stat(self.input_file).st_size != 0:
+            try:
+                with open('{}'.format(self.input_file)) as f:
+                    content = f.read()
+                    words = content.split()
+                    number_words = len(words)
+                return number_words
+            except Exception as e:
+                print(e)
+                return ""
+        else:
+            print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
+            return ""
+
 
 
