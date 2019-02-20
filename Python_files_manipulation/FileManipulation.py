@@ -75,11 +75,14 @@ class FileManipulation:
         if os.path.isfile(self.input_file) and os.stat(self.input_file).st_size != 0:
             try:
                 with open('{}'.format(self.input_file), 'rb') as read_b:
-                    with open('{}'.format(output_file), 'wb') as copy_b:
-                        for line in read_b:
-                            copy_b.write(line)
-                        print("SUCCESSFULLY COPIED FILE INTO: {}".format(output_file))
-                        return True
+                    if not os.path.exists(output_file):
+                        with open('{}'.format(output_file), 'wb') as copy_b:
+                            for line in read_b:
+                                copy_b.write(line)
+                            print("SUCCESSFULLY COPIED FILE INTO: {}".format(output_file))
+                            return True
+                    else:
+                        print("FILE ALREADY EXIST UNDER:\n\t{}".format(output_file))
             except Exception as e:
                 print(e)
                 return

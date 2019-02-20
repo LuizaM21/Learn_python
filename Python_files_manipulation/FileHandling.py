@@ -23,13 +23,13 @@ BINARY_FILE_COPY = os.path.join(str(current_path),
 
 if __name__ == "__main__":
     copy_into_file = FileManipulation(COUNTRY_CONFIG_CSV).copy_text_file(COUNTRY_CONFIG_CSV_COPY)
-    data_content = FileManipulation(COUNTRY_CONFIG_CSV).read_file()
-    print(data_content)
+    # data_content = FileManipulation(COUNTRY_CONFIG_CSV).read_file()
+    # print(data_content)
     append_info_into_existent_file = FileManipulation(COUNTRY_OUTPUT_FILE).add_to_existent_file()
     print(append_info_into_existent_file)
 
-    # fh_jpg = FileManipulation(BINARY_FILE).copy_binary_file(BINARY_FILE_COPY)
-    # print(fh_jpg)
+    fh_jpg = FileManipulation(BINARY_FILE).copy_binary_file(BINARY_FILE_COPY)
+    print(fh_jpg)
 
     # csv_m = CSVManipulation(country_config_csv, country_config_csv_copy)
     # csv_m.read_csv_specific_column(3)
