@@ -26,6 +26,7 @@ QUIZ_JSON = os.path.join(str(current_path), 'Python_project_files\Input_files\JS
 
 
 if __name__ == "__main__":
+    print(COUNTRY_CONFIG_CSV)
     copy_into_file = FileManipulation(COUNTRY_CONFIG_CSV).copy_text_file(COUNTRY_CONFIG_CSV_COPY)
     data_content = FileManipulation(COUNTRY_CONFIG_CSV).read_file()
     print(data_content)
