@@ -3,7 +3,7 @@ import os
 import pprint
 
 
-class CSVManipulation(object):
+class CSVManipulation:
 
     def __init__(self, input_file, output_file=""):
         self.input_file = input_file

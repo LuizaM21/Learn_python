@@ -7,7 +7,7 @@
         <quiz_json>Python_project_files\Input_files\JSON_files\quiz.json</quiz_json>
         <cd_catalog_xml>Python_project_files\Input_files\XML_files\cd_catalog.xml</cd_catalog_xml>
         <breakfast_menu_xml>Python_project_files\Input_files\XML_files\breakfast_menu.xml</breakfast_menu_xml>
-        <sun_and_moon_jpg>Learning_Python_Scripts\Python_project_files\Input_files\OTHER_files\sun_and_moon.jpg</sun_and_moon_jpg>
+        <sun_and_moon_jpg>Python_project_files\Input_files\OTHER_files\sun_and_moon.jpg</sun_and_moon_jpg>
     </input_dir>
     <output_dir folderDirectory="Python_project_files\Output_files">
         <output_country_config_copy>Python_project_files\Output_files\CSV_files\CountryConfig_copy.csv</output_country_config_copy>

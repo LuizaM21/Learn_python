@@ -37,7 +37,7 @@ class ConfigData:
         """
         Verifies if an instance is already created, otherwise create one and store it,
         to avoid multiple reads of the same file
-        :return: ConfigData instance
+        :return: ConfigData.config instance
         """
         if not ConfigData.config:
             ConfigData.config = ConfigData()
@@ -67,13 +67,14 @@ class ConfigData:
             print("File {} not found".format(CONFIGFILE))
             return ""
 
-    def get_value(self, paramKey):
+    def get_value(self, param_key):
         """
-        :param : return a desired value from the valid dictionary defined as constants
+        :param param_key: return a desired value from the valid dictionary defined as constants
         :return: "" string if the parameter value is not found
         """
-        if paramKey and self.paramDict.__contains__(paramKey):
-            return str(self.paramDict.get(paramKey))
+        if param_key and self.paramDict.__contains__(param_key):
+            return str(self.paramDict.get(param_key))
+        print("Parameter {} not found!".format(param_key))
         return ""
 
 

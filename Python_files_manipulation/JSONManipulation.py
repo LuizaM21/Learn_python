@@ -2,10 +2,11 @@ import sys
 import os
 import pprint
 import simplejson as json
-# from Python_files_manipulation import FileHandling
+import ConfigData as cd
 
-# all_countries_json = FileHandling.ALL_COUNTRIES_JSON
-# quiz_json_file = FileHandling.QUIZ_JSON
+config_data = cd.ConfigData.get_instance()
+all_countries_json = config_data.get_value(cd.ALL_COUNTRIES_JSON)
+quiz_json_file = config_data.get_value(cd.QUIZ_JSON)
 
 COUNTRY_DETAILS = [
     ("Nepal", "Kathmandu",
@@ -40,7 +41,7 @@ COUNTRY_DETAILS = [
 
 class JSONManipulation(object):
 
-    def __init__(self, json_file):
+    def __init__(self, json_file=""):
         self.input_file = json_file
 
     @staticmethod
