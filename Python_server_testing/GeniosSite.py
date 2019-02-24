@@ -1,8 +1,9 @@
 import bs4
 import requests
 import pprint
+from Python_server_testing.Decorators import request_duration
 
-base_url = "https://www.genios.ro/"
+BASE_URL = "https://www.genios.ro/"
 
 
 class GeniosServer:
@@ -12,6 +13,7 @@ class GeniosServer:
         self.site_link = []
         self.site_response = requests.get(self.site_url)
 
+    @request_duration
     def get_page_content(self):
         """Loads content of the first page of a site"""
         response = self.site_response
@@ -23,8 +25,9 @@ class GeniosServer:
     def get_response_headers(self):
         """Return header data of the server"""
         header = self.site_response.headers
-        return header
+        return dict(header)
 
+    @request_duration
     def get_site_link_lists(self):
         """Return all the visible links from the current site"""
         site_content = bs4.BeautifulSoup(self.site_response.text, features="html.parser")
@@ -36,6 +39,7 @@ class GeniosServer:
                 continue
         return self.site_link
 
+    @request_duration
     def get_all_cubes_types(self):
         """Return all the cube models name and links from the front page"""
         site_content = bs4.BeautifulSoup(self.site_response.text, features="html.parser")
@@ -51,15 +55,15 @@ class GeniosServer:
 
 
 if __name__ == '__main__':
-    site = GeniosServer(base_url)
+    site = GeniosServer(BASE_URL)
 
     # content_site = site.get_page_content()
     # print(content_site)
     # site_header = site.get_response_headers()
     # pprint.pprint(site_header)
-    # pprint.pprint(site.get_site_link_lists())
+    pprint.pprint(site.get_site_link_lists())
 
-    pprint.pprint(site.get_all_cubes_types())
+    # pprint.pprint(site.get_all_cubes_types())
 
 
 

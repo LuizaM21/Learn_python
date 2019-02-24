@@ -3,6 +3,7 @@
     <input_dir folderDirectory="Python_project_files\Input_files">
         <country_config_csv>Python_project_files\Input_files\CSV_files\CountryConfig.csv</country_config_csv>
         <country_list>Python_project_files\Input_files\CSV_files\CountryList.csv</country_list>
+        <site_list_csv>Python_project_files\Input_files\CSV_files\ListOfSites.csv</site_list_csv>
         <all_countries_json>Python_project_files\Input_files\JSON_files\GetAllCountries.json</all_countries_json>
         <quiz_json>Python_project_files\Input_files\JSON_files\quiz.json</quiz_json>
         <cd_catalog_xml>Python_project_files\Input_files\XML_files\cd_catalog.xml</cd_catalog_xml>
@@ -14,7 +15,7 @@
         <output_country_conf_col_copy>Python_project_files\Output_files\CSV_files\CountryConfig_columns_copy.csv</output_country_conf_col_copy>
         <output_country_list_csv>Python_project_files\Output_files\CSV_files\CountryList.csv</output_country_list_csv>
         <output_other_file>Python_project_files\Output_files\OTHER_files\sun_and_moon_copy.jpg</output_other_file>
-        <output_xml_folder>Python_project_files\Output_files\XML_files</output_xml_folder>
+        <output_xml_file>Python_project_files\Output_files\XML_files\output_xml_file.xml</output_xml_file>
         <output_json_folder>Python_project_files\Output_files\JSON_files</output_json_folder>
     </output_dir>
 </config>

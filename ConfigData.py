@@ -14,11 +14,12 @@ PROJECT_DIRECTORY_PATH = os.path.dirname(os.path.realpath(__file__))
 CONFIGFILE = "config.xml"
 
 # file keys
-OUTPUT_XML_FOLDER = "output_xml_folder"
+OUTPUT_XML_FILE = "output_xml_file"
 OUTPUT_COUNTRY_CONFIG_COPY = "output_country_config_copy"
 OUTPUT_JSON_FOLDER = "output_json_folder"
 OUTPUT_COUNTRY_CONF_COL_COPY = "output_country_conf_col_copy"
 OUTPUT_OTHER_FILE = "output_other_file"
+SITE_LIST_CSV = "site_list_csv"
 COUNTRY_LIST = "country_list"
 BREAKFAST_MENU_XML = "breakfast_menu_xml"
 SUN_AND_MOON_JPG = "sun_and_moon_jpg"
@@ -49,7 +50,6 @@ class ConfigData:
         self.read_from_config_file()
 
     def read_from_config_file(self):
-
         if os.path.isfile(self.config_file) and os.stat(self.config_file).st_size != 0:
             try:
                 # read config file and load the content as a xml object

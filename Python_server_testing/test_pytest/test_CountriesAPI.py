@@ -1,11 +1,13 @@
-""" from cmd run command: pytest Python_server_testing/test_pytest -v
+""" from cmd run command:
+pytest Python_server_testing/test_pytest/test_CountriesAPI.py -v
 for a detailed run of the tests"""
 
 from Python_server_testing.AllCountriesAPI import JsonAPI
 from Python_files_manipulation.CSVManipulation import CSVManipulation
-from Python_files_manipulation import FileHandling
+import ConfigData as config_data
 
-country_config_csv = FileHandling.COUNTRY_CONFIG_CSV
+c_data = config_data.ConfigData.get_instance()
+country_config_csv = c_data.get_value(config_data.COUNTRY_CONFIG_CSV)
 
 
 def test_countries_details_type():
@@ -27,8 +29,6 @@ def test_country_iso_2_code():
     if len(actual_iso_2_list) == len(expected_iso_2_list):
         check_list = zip(sorted(actual_iso_2_list), sorted(expected_iso_2_list))
         for actual, expected in check_list:
-            print("actual", actual)
-            print("expected", expected)
             assert actual == expected
 
 

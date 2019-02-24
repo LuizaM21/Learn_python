@@ -9,23 +9,24 @@ class CSVManipulation:
         self.input_file = input_file
         self.output_file = output_file
 
-    def read_csv_file(self):
-        if os.path.isfile(self.input_file):
+    def read_csv_lines(self):
+        """return the content of csv into a list of strings"""
+        if os.path.isfile(self.input_file) and os.stat(self.input_file).st_size != 0:
             try:
+                csv_data_list = []
                 with open('{}'.format(self.input_file), 'r') as read_csv:
                     csv_file = csv.reader(read_csv)
                     for line in csv_file:
-                        print(line)
-                    return csv_file
+                        csv_data_list.append(line[0])
+                    return csv_data_list
             except Exception as e:
-                print(e)
-                return ""
+                return str(e)
         else:
             print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
             return ""
 
     def read_csv_specific_column(self, column_index: object) -> object:
-        """Read specific column from csv file"""
+        """Read specific column from csv file and return a list"""
         if os.path.isfile(self.input_file) and os.stat(self.input_file).st_size != 0:
             try:
                 with open('{}'.format(self.input_file), 'r') as csv_read:

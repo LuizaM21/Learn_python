@@ -16,9 +16,15 @@ BINARY_FILE = config_data.get_value(cd.SUN_AND_MOON_JPG)
 BINARY_FILE_COPY = config_data.get_value(cd.OUTPUT_OTHER_FILE)
 ALL_COUNTRIES_JSON = config_data.get_value(cd.ALL_COUNTRIES_JSON)
 QUIZ_JSON = config_data.get_value(cd.QUIZ_JSON)
+SITE_LIST_CSV = config_data.get_value(cd.SITE_LIST_CSV)
 
 
 if __name__ == "__main__":
+    link_list = csv_manipulation(SITE_LIST_CSV).read_csv_lines()
+    print(len(link_list))
+    print(link_list)
+    # sys.exit()
+
     copy_into_file = file_manipulation(COUNTRY_CONFIG_CSV).copy_text_file(COUNTRY_CONFIG_CSV_COPY)
     data_content = file_manipulation(COUNTRY_CONFIG_CSV).read_file()
     print(data_content)

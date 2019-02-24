@@ -10,6 +10,7 @@ class JsonAPI:
         self.api_request = "http://services.groupkt.com/"
         self.iso__code_2 = iso_code
 
+    @request_duration
     def get_all_countries_details(self):
         """Get the API response and evaluate the response as a valid JSON content
         :return all_countries_response"""
@@ -19,8 +20,7 @@ class JsonAPI:
                 all_countries_response = json.loads(api_response.text)
                 return all_countries_response
             except Exception as e:
-                print(e)
-                return
+                return str(e)
         else:
             print("Bad request!")
 
@@ -35,7 +35,7 @@ class JsonAPI:
                 return country_details
             except Exception as e:
                 print(e)
-                return False
+                return ""
         else:
             print("Bad Request!")
 

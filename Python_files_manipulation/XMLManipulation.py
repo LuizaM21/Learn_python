@@ -1,12 +1,11 @@
+import os
 import xml.dom.minidom as minidom
 import sys
-import ConfigData as cf
-from pathlib import Path
+import ConfigData as cd
 
-BASE_DIR = Path(r"C:\Learning_Python_Scripts\Python_project_files\Input_files\XML_files")
-OUTPUT_DIR = Path(r"C:\Learning_Python_Scripts\Python_project_files\Output_files\XML_files")
-xml_file = "Cell3DReport.xml"
-output_file = OUTPUT_DIR / "output_xml_file.xml"
+config_data = cd.ConfigData.get_instance()
+input_xml_file = config_data.get_value(cd.BREAKFAST_MENU_XML)
+output_file = config_data.get_value(cd.OUTPUT_XML_FILE)
 
 
 class XMLManipulation(object):
@@ -14,19 +13,22 @@ class XMLManipulation(object):
     # TODO: Config paths from Config file
     # BASE_DIR = configData.get_value(cf.CONFIG_INPUT_LIST[2])
 
-    def __init__(self, xml_f):
-        self.input_file = BASE_DIR / xml_f
+    def __init__(self, input_file):
+        self.input_file = input_file
 
     def read_xml_file(self):
-        if self.input_file.exists():
-            print(type(self.input_file))
-            with open(str(self.input_file), 'r', encoding='utf-8') as input_data:
-                print("Read from path: {}".format(self.input_file))
-                file_content = input_data.read().splitlines()
-                input_data.close()
+        if os.path.isfile(self.input_file) and os.stat(self.input_file).st_size != 0:
+            try:
+                str_xml = ""
+                with open(str(self.input_file), 'r', encoding='utf-8') as input_data:
+                    print("Read from path: {}".format(self.input_file))
+                    file_content = input_data.read().splitlines()
+                    input_data.close()
                 if type(file_content) == list:
                     str_xml = "".join(file_content)
                 return str_xml
+            except Exception as e:
+                return str(e)
         else:
             return FileNotFoundError
 
@@ -39,7 +41,7 @@ class XMLManipulation(object):
 
 
 if __name__ == "__main__":
-    xml_data = XMLManipulation(xml_file).read_xml_file()
+    xml_data = XMLManipulation(input_xml_file).read_xml_file()
     with open(str(output_file), 'w') as output_f:
         print("write file in: {}".format(output_file))
         output_f.write(xml_data)
