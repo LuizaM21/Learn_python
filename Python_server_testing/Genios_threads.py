@@ -2,20 +2,13 @@ from timeit import default_timer as timer
 
 import bs4
 import urllib.request
+import ConfigData as config_data
 from multiprocessing import Process
+from Python_files_manipulation.CSVManipulation import CSVManipulation as csv_manipulation
 
-
-URL_lists = ['https://www.genios.ro/catalog/moyu/',
-             'https://www.genios.ro/catalog/lanlan/',
-             'https://www.genios.ro/catalog/philos/',
-             'https://www.genios.ro/catalog/mefferts/',
-             'https://www.genios.ro/catalog/mofangge/',
-             'https://www.genios.ro/catalog/shengshou/',
-             'https://www.genios.ro/catalog/yj/',
-             'https://www.genios.ro/catalog/yuxin/',
-             'https://www.genios.ro/catalog/mf8/',
-             'https://www.genios.ro/catalog/calvin/',
-             'https://www.genios.ro/catalog/qiyi/']
+conf_data = config_data.ConfigData.get_instance()
+cube_types_file = conf_data.get_value(config_data.CUBE_TYPES_CSV)
+URL_lists = csv_manipulation(cube_types_file).read_csv_specific_column(1)
 
 
 def get_page_content(site_url):

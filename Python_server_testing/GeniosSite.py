@@ -61,9 +61,9 @@ if __name__ == '__main__':
     # print(content_site)
     # site_header = site.get_response_headers()
     # pprint.pprint(site_header)
-    pprint.pprint(site.get_site_link_lists())
+    # pprint.pprint(site.get_site_link_lists())
 
-    # pprint.pprint(site.get_all_cubes_types())
+    pprint.pprint(site.get_all_cubes_types())
 
 
 
