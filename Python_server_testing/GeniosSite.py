@@ -8,10 +8,14 @@ BASE_URL = "https://www.genios.ro/"
 
 class GeniosServer:
     """Get a valid site and execute a request for that site"""
-    def __init__(self, url):
-        self.site_url = url
+    def __init__(self):
+        self.site_url = BASE_URL
         self.site_link = []
         self.site_response = requests.get(self.site_url)
+
+    def get_page_url(self):
+        site_url = self.site_response.url
+        return site_url
 
     @request_duration
     def get_page_content(self):
@@ -55,10 +59,11 @@ class GeniosServer:
 
 
 if __name__ == '__main__':
-    site = GeniosServer(BASE_URL)
-
-    # content_site = site.get_page_content()
+    site = GeniosServer()
+    content_site = site.get_page_content()
     # print(content_site)
+    url = site.get_page_url()
+    print(url)
     # site_header = site.get_response_headers()
     # pprint.pprint(site_header)
     # pprint.pprint(site.get_site_link_lists())

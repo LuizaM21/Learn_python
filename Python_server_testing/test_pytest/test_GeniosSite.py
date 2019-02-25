@@ -12,7 +12,15 @@ BASE_URL = GeniosSite.BASE_URL
 SITE_LIST = c_data.get_value(config_data.SITE_LIST_CSV)
 CUBE_TYPES = c_data.get_value(config_data.CUBE_TYPES_CSV)
 
-site = GeniosSite.GeniosServer(BASE_URL)
+site = GeniosSite.GeniosServer()
+
+
+def test_site_url():
+    actual_response = site.get_page_url()
+    if actual_response:
+        assert actual_response == BASE_URL
+    else:
+        assert False
 
 
 def test_response_content_type():
