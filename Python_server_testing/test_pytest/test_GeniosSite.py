@@ -1,17 +1,18 @@
-""" from cmd run command:
-pytest Python_server_testing/test_pytest/test_GeniosSite.py -v
-for a detailed run of the tests only for this test file"""
+""" from cmd run commands:
+pytest Python_server_testing/test_pytest/test_GeniosSite.py -v ------for detailed run of tests for specific test file
+pytest test_mod.py::test_func ------- for specific test method in cmd line"""
 
-import pprint
 import ConfigData as config_data
-from Python_server_testing.GeniosSite import GeniosServer
+from Python_server_testing import GeniosSite
 from Python_files_manipulation.CSVManipulation import CSVManipulation as csv_manipulation
 
 c_data = config_data.ConfigData.get_instance()
-BASE_URL = "https://www.genios.ro/"
-site = GeniosServer(BASE_URL)
+
+BASE_URL = GeniosSite.BASE_URL
 SITE_LIST = c_data.get_value(config_data.SITE_LIST_CSV)
 CUBE_TYPES = c_data.get_value(config_data.CUBE_TYPES_CSV)
+
+site = GeniosSite.GeniosServer(BASE_URL)
 
 
 def test_response_content_type():

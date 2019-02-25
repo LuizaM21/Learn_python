@@ -1,143 +1,144 @@
 import math
 import sys
+import functools
+
+
+def decorator_function(input_function):
+    @functools.wraps(input_function)
+    def wrapper_function(*args, **kwargs):
+        print("Romania is default country")
+        value = input_function(*args, **kwargs)
+        return value
+    return wrapper_function
 
 
 class ArithmeticFunctions:
+    def __init__(self, val1, val2=None):
+        self.val_1 = val1
+        self.val_2 = val2
 
-    def add_two_numbers(self, num2):
-        result = int(self) + int(num2)
+    def add_two_numbers(self):
+        result = int(self.val_1) + int(self.val_2)
         print('Sum of two numbers: ' + str(result))
         return result
 
-    @staticmethod
-    def find_unique_number(number_list):
+    def subtract_two_numbers(self):
+        result = self.val_1 - self.val_2
+        print('Subtraction of two numbers: ' + str(result))
+        return result
+
+    def find_unique_number(self):
         single_val = set()
-        for num in number_list:
+        for num in self.val_1:
             if num not in single_val:
                 single_val.add(num)
             else:
                 single_val.remove(num)
         return int(str(single_val).replace("{", "").replace("}", ""))
 
-    @staticmethod
-    def prim(numar):
-        """Funcție ce determină dacă un număr este prim."""
-        if numar < 2:
+    def check_prime_num(self):
+        """Analyze if a number is prime or not"""
+        if self.val_1 < 2:
             return False
-        elif numar != 2 and numar % 2 == 0:
+        elif self.val_1 != 2 and self.val_1 % 2 == 0:
             return False
         else:
             return True
 
-    @staticmethod
-    def par(number):
-        """Funcție ce determină dacă un număr este par sau nu"""
-        if number % 2 == 0:
-            print("Number %d is even" % number)
+    def detect_even_or_odd_num(self):
+        """Function to determine is a number is even or not"""
+        if self.val_1 % 2 == 0:
+            print("Number %d is even" % self.val_1)
             return True
         else:
-            print("Number %d is odd" % number)
+            print("Number %d is odd" % self.val_1)
             return False
 
-    @staticmethod
-    def maxim(num1, num2):
-        """Funcție ce determină maximul dintre două numere."""
-        # Funcția va returna maximul dintre cele două numere
-        if num1 > num2:
-            max_value = num1
-            print("number {} is greater than number {}".format(max_value, num2))
+    def maxim(self):
+        """Determine maximum value from two numbers"""
+        if self.val_1 > self.val_2:
+            max_value = self.val_1
+            print("Number {} is greater than number {}".format(max_value, self.val_2))
             return max_value
-        elif num1 < num2:
-            max_value = num2
-            print("number {} is greater than number {}".format(max_value, num1))
+        elif self.val_1 < self.val_2:
+            max_value = self.val_2
+            print("Number {} is greater than number {}".format(max_value, self.val_1))
             return max_value
         else:
-            max_value = num2
-            print("number {} is equal with number {}".format(max_value, num2))
+            max_value = self.val_2
+            print("Number {} is equal with number {}".format(max_value, self.val_2))
             return max_value
 
-    @staticmethod
-    def minim(num1, num2):
-        """Funcție ce determină minimul dintre două numere."""
-        # Funcția va returna minimul dintre cele două numere
-        if num1 > num2:
-            min_value = num2
-            print("number {} is lower than number {}".format(min_value, num1))
+    def minim(self):
+        """Determine minimum value from two numbers"""
+        if self.val_1 > self.val_2:
+            min_value = self.val_2
+            print("number {} is lower than number {}".format(min_value, self.val_1))
             return min_value
-        elif num1 < num2:
-            min_value = num1
-            print("number {} is lower than number {}".format(min_value, num2))
+        elif self.val_1 < self.val_2:
+            min_value = self.val_1
+            print("number {} is lower than number {}".format(min_value, self.val_2))
             return min_value
         else:
-            min_value = num2
-            print("number {} is equal with number {}".format(min_value, num2))
+            min_value = self.val_2
+            print("number {} is equal with number {}".format(min_value, self.val_2))
             return min_value
 
-    @staticmethod
-    def is_palindrome(str_pal):
-        """Funcție ce determină dacă șirul primit este palindrom."""
-        word = reversed(str_pal)
-        if list(word) == list(str_pal):
-            print("word {} is a palindrome ".format(str_pal))
+    def is_palindrome(self):
+        """Determine if the input is palindrome or not"""
+        word = reversed(self.val_1)
+        if list(word) == list(self.val_1):
+            print("word {} is a palindrome ".format(self.val_1))
             return True
         else:
-            print("word: {} is not a palindrome".format(str_pal))
+            print("word: {} is not a palindrome".format(self.val_1))
             return False
 
-    @staticmethod
-    def is_pow_of(n):
-        if n == 0:
+    def is_pow_of(self):
+        if self.val_1 == 0:
             return False
-        while n != 1:
-            if n % 2 != 0:
+        while self.val_1 != 1:
+            if self.val_1 % 2 != 0:
                 return False
-            n = n // 2
+            self.val_1 = self.val_1 // 2
         return True
 
-    @staticmethod
-    def factorial_of(num):
+    def factorial_of(self):
         factorial = 1
-        if num < 0:
+        if self.val_1 < 0:
             return False
-        elif num == 0:
+        elif self.val_1 == 0:
             return 1
         else:
-            for i in range(factorial, num + 1):
+            for i in range(factorial, self.val_1 + 1):
                 factorial = factorial * i
             print("Final Factorial result: %d " % factorial)
             return factorial
 
-    @staticmethod
-    def numar_vocale(word):
-        """Determina numarul de vocale."""
+    def count_vocals(self):
+        """Return the number of vocals from a word"""
         number_vowel = 0
-        char_list = list(word.lower())
-        vocale = ('a', 'e', 'i', 'o', 'u')
+        char_list = list(self.val_1.lower())
+        vocals = ('a', 'e', 'i', 'o', 'u')
         for char in char_list:
-            if char in vocale:
+            if char in vocals:
                 number_vowel += 1
         return number_vowel
 
-    @staticmethod
-    def cuvinte(propozitie):
-        """Determina numarul de cuvinte."""
-        word_counter = len(propozitie.split(" "))
+    def count_word_from_sentence(self):
+        """Return the number of words from a sentence"""
+        word_counter = len(self.val_1.split(" "))
         return word_counter
 
-    def subtract_two_numbers(self, num2):
-        result = self - num2
-        print('Subtraction of two numbers: ' + str(result))
-        return result
-
-    def multiply_two_numbers(self, num2):
-        result = self * num2
+    def multiply_two_numbers(self):
+        result = self.val_1 * self.val_2
         print('Multiplication of two numbers: ' + str(result))
         return result
 
-    def divide_two_numbers(self, divider):
+    def divide_two_numbers(self):
         """ Catch exception if zero value is given"""
         try:
-            result = self / divider
+            result = self.val_1 / self.val_2
         except Exception as e:
             print('divider was zero')
             return e
@@ -145,86 +146,66 @@ class ArithmeticFunctions:
             print('Division of two numbers: ' + str(result))
         return result
 
-    def modulus_of_two_numbers(self, num2):
-        if num2 == 0:
+    def modulus_of_two_numbers(self):
+        if self.val_2 == 0:
             print('divider value is zero')
             return 'cannot divide by zero'
-        result = self % num2
+        result = self.val_1 % self.val_2
         print('Modulus of two numbers: ' + str(result))
         return result
 
-    def exponent_of_two_numbers(self, num2):
-        results = self ** num2
-
+    def exponent_of_two_numbers(self):
+        results = self.val_1 ** self.val_2
         print('Exponent of two numbers: ' + str(results))
         return results
 
-    def square_root(self, exponent):
-        result = math.pow(self, exponent)
+    def square_root(self):
+        result = math.pow(self.val_1, self.val_2)
         print('Math.pow function applied on two numbers: ' + str(result))
         return result
 
     def square(self):
-        return self * self
+        return self.val_1 * self.val_1
 
-    def map_function(self, arg_list):
-        """function that takes as parameter another function but without parenthesis
-            This will execute the function without expecting any parameters"""
-        items = []
-        for i in arg_list:
-            items.append(self(i))
-        return items
-
-    squares = map_function(square, [1, 2, 3, 4])
-    print(squares)
-
-    def decorator_function(self):
-        def wrapper_function(*args, **kwargs):
-            print("Romania is default country")
-            return self(*args, **kwargs)
-        return wrapper_function
-
+    @staticmethod
     @decorator_function
-    def complete_country_with_city(self):
-        print('Iasi city')
-
-    @decorator_function
-    def complete_two_cities(self, city):
-        print('{} and {} '.format(self, city) + 'cities')
-
-    complete_country_with_city()
-    complete_two_cities('Bucuresti', 'Cluj')
+    def complete_two_cities(*city):
+        print('{} and {} '.format(city[0], city[1]) + 'cities')
 
 
 if __name__ == '__main__':
-    ArithmeticFunctions.par(3)
-    ArithmeticFunctions.maxim(2, 3)
-    ArithmeticFunctions.maxim(5, 3)
-    ArithmeticFunctions.maxim(3, 3)
-    assert ArithmeticFunctions.minim(2, 4) == 2
-    assert ArithmeticFunctions.minim(4, 3) == 3
-    assert ArithmeticFunctions.minim(2, 2) == 2
-    assert not ArithmeticFunctions.is_palindrome("car")
-    assert ArithmeticFunctions.is_palindrome("tacocat")
-    assert (ArithmeticFunctions.is_pow_of(2))
-    assert (ArithmeticFunctions.is_pow_of(8))
-    assert (ArithmeticFunctions.is_pow_of(32))
-    assert not (ArithmeticFunctions.is_pow_of(10))
-    assert not (ArithmeticFunctions.is_pow_of(25))
-    ArithmeticFunctions.factorial_of(3)
-    ArithmeticFunctions.factorial_of(5)
-    ArithmeticFunctions.factorial_of(0)
-    ArithmeticFunctions.factorial_of(1)
-    assert ArithmeticFunctions.numar_vocale("asap") == 2
-    assert ArithmeticFunctions.numar_vocale("asaaap") == 4
-    assert ArithmeticFunctions.cuvinte("Ana are mere.") == 3
-    assert ArithmeticFunctions.cuvinte("Incepe sa imi placa Python.") == 5
-    print(ArithmeticFunctions.prim(3))
-    print(ArithmeticFunctions.prim(100151))
-    assert ArithmeticFunctions.find_unique_number([1, 1, 2, 3, 2]) == 3
-    assert ArithmeticFunctions.find_unique_number([1, 1, 2, 2, 1]) == 1
-    assert ArithmeticFunctions.find_unique_number([1, 1, 1, 2, 2]) == 1
-    ArithmeticFunctions.add_two_numbers(2, 3)
+
+    ArithmeticFunctions.complete_two_cities('Bucuresti', 'Cluj')
     ArithmeticFunctions.complete_two_cities("Craiova", "Iasi")
+    ArithmeticFunctions(2).detect_even_or_odd_num()
+    ArithmeticFunctions(2, 3).maxim()
+    ArithmeticFunctions(5, 3).maxim()
+    ArithmeticFunctions(3, 3).maxim()
+    square_root = ArithmeticFunctions(2).square()
+    print(square_root)
+    assert ArithmeticFunctions(2, 4).minim() == 2
+    assert ArithmeticFunctions(4, 3).minim() == 3
+    assert ArithmeticFunctions(2, 2).minim() == 2
+    assert not ArithmeticFunctions("car").is_palindrome()
+    assert ArithmeticFunctions("tacocat").is_palindrome()
+    assert ArithmeticFunctions(2).is_pow_of()
+    assert ArithmeticFunctions(8).is_pow_of()
+    assert ArithmeticFunctions(32).is_pow_of()
+    assert not ArithmeticFunctions(10).is_pow_of()
+    assert not ArithmeticFunctions(25).is_pow_of()
+    ArithmeticFunctions(3).factorial_of()
+    ArithmeticFunctions(5).factorial_of()
+    ArithmeticFunctions(0).factorial_of()
+    ArithmeticFunctions(1).factorial_of()
+    assert ArithmeticFunctions("asap").count_vocals() == 2
+    assert ArithmeticFunctions("asaaap").count_vocals() == 4
+    assert ArithmeticFunctions("Ana are mere.").count_word_from_sentence() == 3
+    assert ArithmeticFunctions("Check this sentence").count_word_from_sentence() == 3
+    print(ArithmeticFunctions(3).check_prime_num())
+    print(ArithmeticFunctions(100151).check_prime_num())
+    assert ArithmeticFunctions([1, 1, 2, 3, 2]).find_unique_number() == 3
+    assert ArithmeticFunctions([1, 1, 2, 2, 1]).find_unique_number() == 1
+    assert ArithmeticFunctions([1, 1, 1, 2, 2]).find_unique_number() == 1
+    ArithmeticFunctions(2, 3).add_two_numbers()
     sys.exit()
 

@@ -4,53 +4,52 @@ from Python_algorithms_and_functions.ArithmeticFunctions import *
 
 
 class TestArithmeticFunctions:
-    calc = ArithmeticFunctions
 
-    @pytest.mark.parametrize('test_input, expected_result', [(calc.add_two_numbers(3, 4), 7),
-                                                             (calc.add_two_numbers(1, 1), 2),
-                                                             (calc.add_two_numbers(0, 0), 0)])
+    @pytest.mark.parametrize('test_input, expected_result', [(ArithmeticFunctions(3, 4).add_two_numbers(), 7),
+                                                             (ArithmeticFunctions(1, 1).add_two_numbers(), 2),
+                                                             (ArithmeticFunctions(0, 0).add_two_numbers(), 0)])
     def test_add_function(self, test_input, expected_result):
         assert test_input == expected_result
 
-    @pytest.mark.parametrize('test_input, expected_result', [(calc.subtract_two_numbers(3, 4), -1),
-                                                             (calc.subtract_two_numbers(-3, -4), 1),
-                                                             (calc.subtract_two_numbers(-3, 3), -6),
-                                                             (calc.subtract_two_numbers(-3, 0), -3)])
+    @pytest.mark.parametrize('test_input, expected_result', [(ArithmeticFunctions(3, 4).subtract_two_numbers(), -1),
+                                                             (ArithmeticFunctions(-3, -4).subtract_two_numbers(), 1),
+                                                             (ArithmeticFunctions(-3, 3).subtract_two_numbers(), -6),
+                                                             (ArithmeticFunctions(-3, 0).subtract_two_numbers(), -3)])
     def test_diff_function(self, test_input, expected_result):
         assert test_input == expected_result
 
-    @pytest.mark.parametrize('test_input, expected_result', [(calc.multiply_two_numbers(3, 4), 12),
-                                                             (calc.multiply_two_numbers(-3, -4), 12),
-                                                             (calc.multiply_two_numbers(-3, 3), -9),
-                                                             (calc.multiply_two_numbers(0, -0), 0)])
+    @pytest.mark.parametrize('test_input, expected_result', [(ArithmeticFunctions(3, 4).multiply_two_numbers(), 12),
+                                                             (ArithmeticFunctions(-3, -4).multiply_two_numbers(), 12),
+                                                             (ArithmeticFunctions(-3, 3).multiply_two_numbers(), -9),
+                                                             (ArithmeticFunctions(0, -0).multiply_two_numbers(), 0)])
     def test_multiply_function(self, test_input, expected_result):
         assert test_input == expected_result
 
-    @pytest.mark.parametrize('test_input, expected_result', [(calc.divide_two_numbers(3, 6), 0.5),
-                                                             (calc.divide_two_numbers(-3, -4), 0.75),
-                                                             (calc.divide_two_numbers(4, 2), 2),
-                                                             (calc.divide_two_numbers(-3, -3), 1),
-                                                             (str(calc.divide_two_numbers(1, 0)), 'division by zero')])
+    @pytest.mark.parametrize('test_input, expected_result', [(ArithmeticFunctions(3, 6).divide_two_numbers(), 0.5),
+                                                             (ArithmeticFunctions(-3, -4).divide_two_numbers(), 0.75),
+                                                             (ArithmeticFunctions(4, 2).divide_two_numbers(), 2),
+                                                             (ArithmeticFunctions(-3, -3).divide_two_numbers(), 1),
+                                                             (str(ArithmeticFunctions(1, 0).divide_two_numbers()), 'division by zero')])
     def test_divide_function(self, test_input, expected_result):
         assert test_input == expected_result
 
-    @pytest.mark.parametrize('test_input, expected_result', [(calc.modulus_of_two_numbers(5, 3), 2),
-                                                             (calc.modulus_of_two_numbers(5, 5), 0),
-                                                             (str(calc.modulus_of_two_numbers(5, 0)),
+    @pytest.mark.parametrize('test_input, expected_result', [(ArithmeticFunctions(5, 3).modulus_of_two_numbers(), 2),
+                                                             (ArithmeticFunctions(5, 3).modulus_of_two_numbers(), 2),
+                                                             (str(ArithmeticFunctions(5, 0).modulus_of_two_numbers()),
                                                               'cannot divide by zero',)])
     def test_modulo_function(self, test_input, expected_result):
         assert test_input == expected_result
 
-    @pytest.mark.parametrize('test_input, expected_result', [(calc.exponent_of_two_numbers(5, 3), 125),
-                                                             (calc.exponent_of_two_numbers(5, 0), 1),
-                                                             (calc.exponent_of_two_numbers(5, -1), 0.2),
-                                                             (calc.exponent_of_two_numbers(5, -2), 0.04),
-                                                             (calc.exponent_of_two_numbers(0, 1), 0)])
+    @pytest.mark.parametrize('test_input, expected_result', [(ArithmeticFunctions(5, 3).exponent_of_two_numbers(), 125),
+                                                             (ArithmeticFunctions(5, 0).exponent_of_two_numbers(), 1),
+                                                             (ArithmeticFunctions(5, -1).exponent_of_two_numbers(), 0.2),
+                                                             (ArithmeticFunctions(5, -2).exponent_of_two_numbers(), 0.04),
+                                                             (ArithmeticFunctions(0, 1).exponent_of_two_numbers(), 0)])
     def test_exponent_function(self, test_input, expected_result):
         assert test_input == expected_result
 
-    @pytest.mark.parametrize('test_input, expected_result', [(calc.square_root(8, 2), 64),
-                                                             (calc.square_root(8, 0), 1)])
+    @pytest.mark.parametrize('test_input, expected_result', [(ArithmeticFunctions(8, 2).square_root(), 64),
+                                                             (ArithmeticFunctions(8, 0).square_root(), 1)])
     def test_square_root_function(self, test_input, expected_result):
         assert test_input == expected_result
 
