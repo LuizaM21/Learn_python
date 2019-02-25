@@ -39,12 +39,10 @@ def test_site_link_lists():
 
 
 def test_all_cubes_types():
-    actual_cube_types = site.get_all_cubes_types()
-
     cube_name = csv_manipulation(CUBE_TYPES).read_csv_specific_column(0)
     cube_link = csv_manipulation(CUBE_TYPES).read_csv_specific_column(1)
-
     expected_cube_types = dict(zip(cube_name, cube_link))
+    actual_cube_types = site.get_all_cubes_types()
 
     if len(actual_cube_types) == len(expected_cube_types):
         for key in actual_cube_types.keys():
