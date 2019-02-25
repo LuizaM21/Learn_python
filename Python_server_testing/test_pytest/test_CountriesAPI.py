@@ -15,6 +15,15 @@ def test_countries_details_type():
     assert isinstance(response, dict)
 
 
+def test_specific_country_details_by_iso3_code():
+    response = JsonAPI("IND").get_specific_country_details_by_ISO3()
+    if isinstance(response, dict):
+        total_counties = response['RestResponse']['messages'][0]
+        assert total_counties == 'Total [36] records found.'
+    else:
+        assert False
+
+
 def test_countries_total_number():
     response = JsonAPI().get_countries_total_number()
     assert response == "Total [249] records found."
@@ -26,6 +35,18 @@ def test_country_iso_2_code():
 
     if len(actual_iso_2_list) == len(expected_iso_2_list):
         check_list = zip(sorted(actual_iso_2_list), sorted(expected_iso_2_list))
+        for actual, expected in check_list:
+            assert actual == expected
+    else:
+        assert False
+
+
+def test_country_iso_3_code():
+    actual_iso_3_list = JsonAPI().get_all_country_iso_3_code()
+    expected_iso_3_list = csv_manipulation(country_config_csv).read_csv_specific_column(2)
+
+    if len(actual_iso_3_list) == len(expected_iso_3_list):
+        check_list = zip(sorted(actual_iso_3_list), sorted(expected_iso_3_list))
         for actual, expected in check_list:
             assert actual == expected
     else:

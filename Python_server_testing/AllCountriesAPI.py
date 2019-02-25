@@ -26,7 +26,7 @@ class JsonAPI:
 
     # Request example: http://services.groupkt.com/state/get/{countryCode}/all
     @request_duration
-    def get_specific_country_details(self):
+    def get_specific_country_details_by_ISO3(self):
         """:return country_details in json format"""
         country_details_response = requests.get(self.api_request + "state/get/" + self.iso__code_2 + "/all")
         if country_details_response.ok:
@@ -89,9 +89,12 @@ class JsonAPI:
 
 
 if __name__ == '__main__':
-    pprint.pprint(JsonAPI().get_all_countries_details())
-    # pprint.pprint(JsonAPI("IND").get_specific_country_details())
+    # pprint.pprint(JsonAPI().get_all_countries_details())
+    response = JsonAPI("IND").get_specific_country_details_by_ISO3()
+    pprint.pprint(response)
+    message = response['RestResponse']['messages'][0]
+    print(message)
     # print(JsonAPI().get_all_country_iso_2_code())
-    print(JsonAPI().get_all_country_iso_3_code())
+    # print(JsonAPI().get_all_country_iso_3_code())
     # print(JsonAPI().get_countries_total_number())
 

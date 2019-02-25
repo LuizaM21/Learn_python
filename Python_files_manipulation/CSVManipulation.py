@@ -39,8 +39,7 @@ class CSVManipulation:
                         column_list.append(line[column_index])
                 return column_list
             except Exception as e:
-                print(e)
-                return ""
+                return str(e)
         else:
             print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
             return ""
