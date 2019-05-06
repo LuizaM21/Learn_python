@@ -3,13 +3,16 @@
 class Owner:
     """This class stores data about a phone owner"""
 
-    def __init__(self, name='', age=None, gender='', phones_type=[], phone_subscriptions=[]):
+    def __init__(self, name='', age=None, gender=''):
         self.owner_name = name
         self.owner_age = age
         self.owner_gender = gender
-        self.owner_details = [str(name), str(age), str(gender)]
-        self.phones_type = phones_type
-        self.phone_subscriptions = phone_subscriptions
+        self.phones_type = []
+
+    def __str__(self):
+        return f'Name: {self.owner_name}, ' \
+               f'Age: {self.owner_age}, ' \
+               f'Gender: {self.owner_gender},'
 
     """---------------------------------------------------------------------"""
     def set_owner_details(self, name, age, gender):

@@ -2,17 +2,23 @@ from pprint import pprint
 from Python_SOLID_principles.SRP_Owner import Owner
 from Python_SOLID_principles.SRP_MobyleType import MobileType
 from Python_SOLID_principles.SRP_Subscriptions import Subscriptions
+from typing import List
 
 
 class Customers:
 
-    def __init__(self, owner, subscriptions, phone_type):
+    def __init__(self, owner, subscriptions: List[Subscriptions], phone_type: List[MobileType]):
         self.owner = owner
         self.subscriptions = subscriptions
         self.phone_type = phone_type
 
-    def get_customer_details(self):
-        return [self.owner.owner_details, self.subscriptions, self.phone_type]
+    def __str__(self):
+        subs = ''.join([str(x) for x in self.subscriptions])
+        pt = ''.join([str(x) for x in self.phone_type])
+
+        return f'Owner: {self.owner}' \
+               f'Subscriptions: {subs}' \
+               f'Phone Type: {pt}'
 
     def get_user_phone_numbers(self):
         pass
@@ -34,9 +40,6 @@ class Customers:
 
 
 if __name__ == '__main__':
-    owner_1 = Owner('john', 23, 'm')
-    owner_2 = Owner("Jane", 25, 'f')
-
     mobile_lg = MobileType('LG', 2015, 'black')
     mobile_samsung = MobileType('Samsung', 2016, 'red')
     mobile_huawei = MobileType('Huawei', 2017, 'P20')
@@ -46,15 +49,14 @@ if __name__ == '__main__':
     subscription_2 = Subscriptions('0752222222', 'prepay')
     subscription_3 = Subscriptions('0753333333', 'prepay')
     subscription_4 = Subscriptions('0744444444', 'prepay')
-    customer_1 = Customers(owner_1,
-                           [subscription_1.subscriptions_details, subscription_2.subscriptions_details],
-                           [mobile_lg.mobile_details, mobile_samsung.mobile_details])
 
-    customer_2 = Customers(owner_2,
-                           [subscription_3.subscriptions_details, subscription_4.subscriptions_details],
-                           [mobile_huawei.mobile_details, mobile_nokia.mobile_details])
+    owner_1 = Owner('john', 23, 'm')
+    owner_2 = Owner("Jane", 25, 'f')
 
-    pprint(customer_1.get_customer_details())
+    customer_1 = Customers(owner_1, [subscription_1, subscription_2], [mobile_lg, mobile_samsung])
+    customer_2 = Customers(owner_2, [subscription_3, subscription_4], [mobile_huawei, mobile_nokia])
+
+    pprint(customer_1.__str__())
     print()
-    pprint(customer_2.get_customer_details())
+    pprint(customer_2.__str__())
 

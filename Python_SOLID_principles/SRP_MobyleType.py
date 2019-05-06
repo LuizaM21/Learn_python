@@ -6,7 +6,11 @@ class MobileType:
         self.model_name = str(model_name)
         self.fabrication_year = str(fabrication_year)
         self.color = str(color)
-        self.mobile_details = [self.model_name, self.fabrication_year, self.color]
+
+    def __str__(self):
+        return f'Model name: {self.model_name} ' \
+               f'Fabrication Year: {self.fabrication_year} ' \
+               f'Color: {self.color}'
 
     def get_mobile_name(self):
         return self.model_name
@@ -28,9 +32,6 @@ class MobileType:
     def set_mobile_color(self, input_color):
         self.color = input_color
         return self.color
-
-    def get_mobile_details(self):
-        return self.mobile_details
 
 
 if __name__ == '__main__':
