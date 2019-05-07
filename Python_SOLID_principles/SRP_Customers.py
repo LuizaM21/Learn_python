@@ -16,9 +16,9 @@ class Customers:
         subs = ''.join([str(x) for x in self.subscriptions])
         pt = ''.join([str(x) for x in self.phone_type])
 
-        return f'Owner: {self.owner}' \
-               f'Subscriptions: {subs}' \
-               f'Phone Type: {pt}'
+        return {'Owner': str(self.owner),
+                'Subscriptions': subs,
+                'Phone Type': pt}
 
     def get_user_phone_numbers(self):
         pass

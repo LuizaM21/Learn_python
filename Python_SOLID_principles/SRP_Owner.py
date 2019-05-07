@@ -12,7 +12,7 @@ class Owner:
     def __str__(self):
         return f'Name: {self.owner_name}, ' \
                f'Age: {self.owner_age}, ' \
-               f'Gender: {self.owner_gender},'
+               f'Gender: {self.owner_gender} '
 
     """---------------------------------------------------------------------"""
     def set_owner_details(self, name, age, gender):

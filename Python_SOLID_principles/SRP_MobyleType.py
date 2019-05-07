@@ -10,7 +10,7 @@ class MobileType:
     def __str__(self):
         return f'Model name: {self.model_name} ' \
                f'Fabrication Year: {self.fabrication_year} ' \
-               f'Color: {self.color}'
+               f'Color: {self.color} '
 
     def get_mobile_name(self):
         return self.model_name
