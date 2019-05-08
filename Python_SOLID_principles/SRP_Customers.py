@@ -1,5 +1,5 @@
 from pprint import pprint
-from Python_SOLID_principles.SRP_Owner import Owner
+from Python_SOLID_principles.SRP_Owner import Owner, PremiumCustomer
 from Python_SOLID_principles.SRP_MobyleType import MobileType
 from Python_SOLID_principles.SRP_Subscriptions import Subscriptions
 from typing import List
@@ -52,6 +52,8 @@ if __name__ == '__main__':
 
     owner_1 = Owner('john', 23, 'm')
     owner_2 = Owner("Jane", 25, 'f')
+    customer_rank = PremiumCustomer('john', 23, 'm', PremiumCustomer.RANK_1)
+    print(customer_rank.get_owner_age())
 
     customer_1 = Customers(owner_1, [subscription_1, subscription_2], [mobile_lg, mobile_samsung])
     customer_2 = Customers(owner_2, [subscription_3, subscription_4], [mobile_huawei, mobile_nokia])
@@ -59,4 +61,5 @@ if __name__ == '__main__':
     pprint(customer_1.__str__())
     print()
     pprint(customer_2.__str__())
+    print(customer_rank)
 
