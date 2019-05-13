@@ -16,9 +16,9 @@ class Owner:
 
     """---------------------------------------------------------------------"""
     def set_owner_details(self, name, age, gender):
-        self.owner_name = str(name)
-        self.owner_age = str(age)
-        self.owner_gender = str(gender)
+        self.owner_name = name
+        self.owner_age = age
+        self.owner_gender = gender
 
     """---------------------------------------------------------------------"""
     def get_owner_name(self):
@@ -54,6 +54,8 @@ class Owner:
 
 
 class PremiumCustomer(Owner):
+    """Respects the OCP (Open-Close principle)"""
+
     RANK_4 = 'Bronze'
     RANK_3 = 'Silver'
     RANK_2 = 'Gold'
@@ -69,3 +71,19 @@ class PremiumCustomer(Owner):
                f'Gender: {self.owner_gender} ' \
                f'Rank: {self.owner_rank} client'
 
+    def set_customer_rank(self, rank):
+        self.owner_rank = rank
+
+
+if __name__ == '__main__':
+
+    owner_1 = PremiumCustomer("Melisande", 35, 'f', PremiumCustomer.RANK_4)
+    print(owner_1)
+    print(owner_1.get_owner_name())
+    print(owner_1.get_owner_age(), '\n')
+
+    owner_1.set_owner_details("Gamora", 23, 'f')
+    owner_1.set_customer_rank(PremiumCustomer.RANK_1)
+    print(owner_1)
+    print(owner_1.get_owner_name())
+    print(owner_1.get_owner_age())

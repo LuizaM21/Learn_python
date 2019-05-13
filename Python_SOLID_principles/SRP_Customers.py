@@ -54,6 +54,7 @@ if __name__ == '__main__':
     owner_2 = Owner("Jane", 25, 'f')
     customer_rank = PremiumCustomer('john', 23, 'm', PremiumCustomer.RANK_1)
     print(customer_rank.get_owner_age())
+    print(customer_rank.get_owner_name())
 
     customer_1 = Customers(owner_1, [subscription_1, subscription_2], [mobile_lg, mobile_samsung])
     customer_2 = Customers(owner_2, [subscription_3, subscription_4], [mobile_huawei, mobile_nokia])
