@@ -1,3 +1,13 @@
+"""
+SRP - Single Responsibility Principle
+Every module, class, or function should have responsibility over a single part of the functionality provided
+by the software, and that responsibility should be entirely encapsulated by the class
+
+Conditions:
+- A class or module should have one, and only one, reason to be changed.
+- Too much responsibility leads to coupling between classes or modules.
+- Isolate change by looking closely at the things that make the whole and separate them logically.
+"""
 
 
 class Subscriptions:

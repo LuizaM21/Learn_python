@@ -1,3 +1,15 @@
+"""
+Liskov Substitution Principle:
+Ability to replace any instance of a parent class with an instance of its child classes without negative effects.
+
+Conditions:
+- Any child method should return the same type as that of its parent
+- Method signature must match (must take the same number of parameters)
+- The preconditions for any method can’t be greater than that of its parent
+- Post conditions must be at least equal to that of its parent
+- Exception types must match
+"""
+from validate_email import validate_email
 
 
 class Owner:
@@ -75,15 +87,35 @@ class PremiumCustomer(Owner):
         self.owner_rank = rank
 
 
+class ValidCustomer:
+    def __init__(self, owner,  email):
+        self.owner = owner
+        self.owner_email = email
+
+    def check_age(self):
+        if self.owner.owner_age < 18:
+            return False
+        return True
+
+    def validate_customer_email(self):
+        is_valid = validate_email(self.owner_email)
+        if is_valid:
+            return True
+        return False
+
+
 if __name__ == '__main__':
 
-    owner_1 = PremiumCustomer("Melisande", 35, 'f', PremiumCustomer.RANK_4)
+    owner_1 = PremiumCustomer("Melisande", 15, 'f', PremiumCustomer.RANK_4)
     print(owner_1)
     print(owner_1.get_owner_name())
     print(owner_1.get_owner_age(), '\n')
 
-    owner_1.set_owner_details("Gamora", 23, 'f')
+    owner_1.set_owner_details("Gamora", 13, 'f')
     owner_1.set_customer_rank(PremiumCustomer.RANK_1)
     print(owner_1)
     print(owner_1.get_owner_name())
     print(owner_1.get_owner_age())
+    valid_user = ValidCustomer(owner_1, 'test.test@test.com')
+    print(valid_user.validate_customer_email())
+    print(valid_user.check_age())
