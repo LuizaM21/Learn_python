@@ -1,5 +1,5 @@
 from pprint import pprint
-from Python_SOLID_principles.SRP_Owner import Owner, PremiumCustomer
+from Python_SOLID_principles.SRP_Owner import Owner, PremiumCustomer, ValidOwner
 from Python_SOLID_principles.SRP_MobyleType import MobileType
 from Python_SOLID_principles.SRP_Subscriptions import Subscriptions
 from typing import List
@@ -63,4 +63,8 @@ if __name__ == '__main__':
     print()
     pprint(customer_2.__str__())
     print(customer_rank)
+
+    valid_owner_1 = ValidOwner('john', 23, 'm', 'test.test@test.test')
+    print("Is owner age valid:", valid_owner_1.validate_age())
+    print("Is owner email valid", valid_owner_1.validate_owner_email())
 

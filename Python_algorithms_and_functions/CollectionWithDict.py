@@ -5,7 +5,10 @@ from Python_algorithms_and_functions.SortingAlgorithm import SortingAlgorithm as
 
 """------------------Dictionaries action that can be applied------------------------------------------"""
 # create a dictionary
-cat_dict = {'name': 'cat', 'age': 3, 'gender': 'female', 'colors': ['black', 'white', 'brown', 'yellow']}
+cat_dict = {'name': 'cat',
+            'age': 3,
+            'gender': 'female',
+            'colors': ['black', 'white', 'brown', 'yellow']}
 # output keys and values
 print('\n' + str(cat_dict.keys()))
 print(cat_dict.values())

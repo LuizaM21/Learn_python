@@ -63,3 +63,7 @@ class TestArithmeticFunctions:
                                                              (ArithmeticFunctions(8, 0).square_root(), 1)])
     def test_square_root_function(self, test_input, expected_result):
         assert test_input == expected_result
+
+
+if __name__ == '__main__':
+    pytest.main()

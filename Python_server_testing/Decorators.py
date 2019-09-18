@@ -13,3 +13,25 @@ def request_duration(input_function):
         return value
     return new_function
 
+
+def decorator_test(inside_function):
+    initial_value = 1
+    print('initial_value= ', initial_value)
+    print("Ran function outside")
+
+    def new_function(*args, **kwarg):
+        value = inside_function(*args, **kwarg)
+        print("Ran function inside")
+        return value
+    return new_function
+
+
+@decorator_test
+def decorator_display(message):
+    return f"{message} Run original function"
+
+
+if __name__ == '__main__':
+    print(decorator_display('message test'))
+
+

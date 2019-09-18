@@ -87,17 +87,23 @@ class PremiumCustomer(Owner):
         self.owner_rank = rank
 
 
-class ValidCustomer:
-    def __init__(self, owner,  email):
-        self.owner = owner
+class ValidOwner(Owner):
+    def __init__(self, name, age, gender, email):
+        super().__init__(name, age, gender)
         self.owner_email = email
 
-    def check_age(self):
-        if self.owner.owner_age < 18:
+    def __str__(self):
+        return f'Name: {self.owner_name}, ' \
+               f'Age: {self.owner_age}, ' \
+               f'Gender: {self.owner_gender} ' \
+               f'Email: {self.owner_email}'
+
+    def validate_age(self):
+        if self.owner_age < 18:
             return False
         return True
 
-    def validate_customer_email(self):
+    def validate_owner_email(self):
         is_valid = validate_email(self.owner_email)
         if is_valid:
             return True
@@ -106,7 +112,7 @@ class ValidCustomer:
 
 if __name__ == '__main__':
 
-    owner_1 = PremiumCustomer("Melisande", 15, 'f', PremiumCustomer.RANK_4)
+    owner_1 = PremiumCustomer("Melisande", 25, 'f', PremiumCustomer.RANK_4)
     print(owner_1)
     print(owner_1.get_owner_name())
     print(owner_1.get_owner_age(), '\n')
@@ -116,6 +122,7 @@ if __name__ == '__main__':
     print(owner_1)
     print(owner_1.get_owner_name())
     print(owner_1.get_owner_age())
-    valid_user = ValidCustomer(owner_1, 'test.test@test.com')
-    print(valid_user.validate_customer_email())
-    print(valid_user.check_age())
+    valid_owner = ValidOwner("Gamora", 13, 'f', 'test.test@test.test')
+    print(valid_owner)
+    print("Is customer email valid:", valid_owner.validate_owner_email())
+    print("Is customer minimum age:", valid_owner.validate_age())
