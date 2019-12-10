@@ -2,9 +2,15 @@
 class MobileType:
     """This class stores details about a phone model"""
 
-    def __init__(self, model_name='', fabrication_year='', color=''):
+    def __init__(self, model_name='', fabrication_year=None, color=None):
         self.model_name = str(model_name)
+
+        if fabrication_year is None:
+            self.fabrication_year = 0
         self.fabrication_year = str(fabrication_year)
+
+        if color is None:
+            self.color = ''
         self.color = str(color)
 
     def __str__(self):

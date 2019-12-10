@@ -17,8 +17,8 @@ class Subscriptions:
         self.subscription_type = subscription_type
 
     def __str__(self):
-        return f'Phone Number: {self.phone_number}' \
-               f'Subscription Type: {self.subscription_type}'
+        return f'Phone Number: {self.phone_number} ' \
+               f'Subscription Type: {self.subscription_type} '
 
     def get_user_phone_number(self):
         return self.phone_number

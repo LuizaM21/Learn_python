@@ -1,27 +1,36 @@
 
-
 class Car(object):
     def __init__(self, name, year_of_fabrication, engine_type, color, _number):
-        self.engine = engine_type
         self.car_name = name
+        self.engine = engine_type
         self.year = year_of_fabrication
-        self.type_of_the_engine = engine_type
-        self.color_of_the_car = color
+        self.car_color = color
         self.plate_number = _number
 
-    def display_car_properties(self):
-        return '{} {} {} {}'.format('\nCar name: ' + self.car_name + '',
-                                    '\nCar color: ' + self.color_of_the_car + '',
-                                    '\nCar engine type: ' + self.type_of_the_engine + '',
-                                    '\nCar year: ' + str(self.year) + '\n')
+    # create alternative constructor of the class
+    @classmethod
+    def from_string(cls, car_string):
+        car_name, engine, year, car_color, plate_number = car_string.split('_')
+        return cls(car_name, engine, year, car_color, plate_number)
+
+    def __str__(self):
+        return {'Car name': self.car_name,
+                'Car color': self.car_color,
+                'Car engine type': self.engine,
+                'Car year': str(self.year),
+                'Car plate': self.plate_number}
 
     def _number(self):
         return self.plate_number
 
 
-car = Car('Toyota', 1992, 'gasoline', 'blue')
+car = Car('Toyota', 1992, 'gasoline', 'blue', 'IS-21-AER')
 
-print(car.display_car_properties())
+car_str = 'Mazda_2006_gasoline_red_BC-45-SKY'
+car_1 = Car.from_string(car_str)
+
+print(car.__str__())
+print(car_1.__str__())
 
 '''--------------- implicit set and get methods------------------------'''
 car.car_name = "Opel"
@@ -33,11 +42,7 @@ print('Car year: ' + str(car.year_of_fabrication))
 car.engine = 'diesel'
 print('Car engine type: ' + car.engine)
 
-car.color_of_the_car = 'black'
-print('Car color: ' + car.color_of_the_car)
-print('How many times this letters occurs in the string: ' + str(car.color_of_the_car.count('a')))
-print('Changed car color: ' + car.color_of_the_car.replace('black', 'yellow'))
-
-
-
-
+car.car_color = 'black'
+print('Car color: ' + car.car_color)
+print('How many times this letters occurs in the string: ' + str(car.car_color.count('a')))
+print('Changed car color: ' + car.car_color.replace('black', 'yellow'))
