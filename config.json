@@ -1,0 +1,26 @@
+{
+    "config" : 
+    {
+        "aws_server" :
+        [
+            {
+                "environment" : "dev-loadtest-pmbu998-master",
+                "resourceType" : "RDS",
+                "metricType" : "CPUUtilization",
+                "region" : "us-east-2",
+                "startTime" : "2020-02-20T13:00:00",
+                "endTime" : "2020-02-20T16:00:00"
+            }
+        ],
+
+        "bastion" :
+        [
+            {
+                "bastion_host" : "Test",
+                "bastion_username" : "Test",
+                "bastion_key_file" : "Test",
+                "bastion_keypass" : "Test"
+            }
+        ]       
+    }
+}
