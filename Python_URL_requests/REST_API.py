@@ -3,6 +3,8 @@ verify data correctness using pytest module,
 output the test suite status and log the project activity into a text file"""
 
 from requests import request
+from urllib.request import urlopen
+import json
 
 
 def get_weather_details():
@@ -18,7 +20,8 @@ def get_weather_details():
                    "lat": "42.8237618",
                    "lon": "-71.2216286"}
     api_response = request("GET", weather_url, headers=url_headers, params=querystring)
-    return api_response.text
+    response = api_response.json()
+    return json.dumps(response, indent=2)
 
 
 def get_geo_db_response():
@@ -29,14 +32,17 @@ def get_geo_db_response():
         'x-rapidapi-key': "f32c83520emsh7b23dbf5988f5dap1e3d73jsn8369312be7d1"
         }
     response = request("GET", url, headers=headers)
-    return response.text
+    data = json.loads(response.text)
+    return data
 
 
 if __name__ == '__main__':
-    print("-----------weather details--------------")
-    print(get_weather_details())
+    # print("-----------weather details--------------")
+    # print(get_weather_details())
 
     print("\n-----------geo_db details--------------")
-    print(get_geo_db_response())
+    geo_data = get_geo_db_response()
 
+    for item in geo_data.items():
+        print(item)
 
