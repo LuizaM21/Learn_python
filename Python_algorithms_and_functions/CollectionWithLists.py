@@ -7,7 +7,7 @@ from Python_algorithms_and_functions.SortingAlgorithm import SortingAlgorithm as
 # convert string into a list
 players = 'player_one, player_two, player_three, player_four'
 players_list = players.split()
-last_list_item = players_list[-1]
+last_list_item = players_list[2]
 second_item_from_the_EOL = players_list[-2]
 slice_elements = players_list[0:2]
 

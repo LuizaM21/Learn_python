@@ -58,7 +58,6 @@ class ConfigData:
         else:
             print("File {} not found".format(CONFIGFILE))
             return ""
-    
 
     def get_value(self, param_key):
         """
@@ -76,3 +75,4 @@ if __name__ == "__main__":
     data = config_data.read_from_config_file()
     print('REGION = ', config_data.get_value(REGION))
     pprint(data)
+

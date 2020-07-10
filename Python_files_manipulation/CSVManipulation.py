@@ -104,3 +104,37 @@ class CSVManipulation:
             print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
             return ""
 
+    def overwrite_csv_existent_column(self, column_values, column_index):
+        """
+            Read the existent csv file, modify and store in a new list.
+            Write the new list in the same csv file path
+        """
+
+        if os.path.isfile(self.input_file) and os.stat(self.input_file).st_size != 0:
+            try:
+                with open('{}'.format(self.input_file), 'r') as csv_reader:
+                    # obtain each csv line into a list
+                    current_csv = csv_reader.read().splitlines()
+                    # extract csv headers
+                    updated_csv = []
+                    for ind, line in enumerate(current_csv):
+                        line = line.split(',')
+                        # overwrite existent data with new data at a given index list
+                        line[column_index] = column_values[ind]
+                        updated_csv.append(line)
+                    csv_reader.close()
+
+                    with open('{}'.format(self.input_file), 'w', newline='') as csv_write:
+                        csv_writer = csv.writer(csv_write)
+                        for line in updated_csv:
+                            csv_writer.writerow(line)
+                            print(line)
+                        print("CONTENT UPDATED UNDER:\n\t{}".format(self.input_file))
+                        return True
+            except Exception as e:
+                print(e)
+                return ""
+        else:
+            print("NO SUCH FILE OR DIRECTORY!\n\t", self.input_file)
+            return ""
+

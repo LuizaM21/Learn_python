@@ -3,7 +3,13 @@ pytest Python_unit_tests/tests/test_ArithmeticFunctions.py -v
 """
 
 import pytest
+import logging
 from Python_algorithms_and_functions.ArithmeticFunctions import ArithmeticFunctions
+
+# Set up the level of the logging module
+logging.basicConfig(filename='Test_ArithmeticFunctions.log',
+                    level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s::%(message)s)')
 
 
 class TestArithmeticFunctions:
@@ -12,14 +18,14 @@ class TestArithmeticFunctions:
                                                                 (ArithmeticFunctions(1, 1).add_two_numbers(), 2),
                                                                 (ArithmeticFunctions(0, 0).add_two_numbers(), 0)])
     def test_add_function(self, test_add_input, exp_add_result):
+        logging.debug(f'Test run with expected value {exp_add_result} with actual value {test_add_input}')
         assert test_add_input == exp_add_result
 
     @pytest.mark.parametrize('test_diff_input, exp_diff_result',
                              [(ArithmeticFunctions(3, 4).subtract_two_numbers(), -1),
                               (ArithmeticFunctions(-3, -4).subtract_two_numbers(), 1),
                               (ArithmeticFunctions(-3, 3).subtract_two_numbers(), -6),
-                              (
-                                      ArithmeticFunctions(-3, 0).subtract_two_numbers(), -3)])
+                              (ArithmeticFunctions(-3, 0).subtract_two_numbers(), -3)])
     def test_diff_function(self, test_diff_input, exp_diff_result):
         assert test_diff_input == exp_diff_result
 

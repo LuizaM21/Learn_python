@@ -7,6 +7,15 @@ from urllib.request import urlopen
 import json
 
 
+json_file = r'D:\04_programing\Learn_python\loggly_events_2020-06-16.json'
+
+
+def get_json_data_from_file():
+    with open(json_file) as f:
+        data = json.load(f)
+    return data
+
+
 def get_weather_details():
     weather_url = "https://climacell-microweather-v1.p.rapidapi.com/weather/nowcast"
 
@@ -40,9 +49,15 @@ if __name__ == '__main__':
     # print("-----------weather details--------------")
     # print(get_weather_details())
 
-    print("\n-----------geo_db details--------------")
-    geo_data = get_geo_db_response()
+    # print("\n-----------geo_db details--------------")
+    # geo_data = get_geo_db_response()
+    #
+    # for item in geo_data.items():
+    #     print(item)
 
-    for item in geo_data.items():
-        print(item)
+    print("\n-----------json data--------------")
+    response_data = get_json_data_from_file()["events"]
+    print(json.dumps(response_data, indent=2))
+
+
 
