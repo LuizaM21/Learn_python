@@ -2,8 +2,8 @@
 class Car(object):
     def __init__(self, name, year_of_fabrication, engine_type, color, _number):
         self.car_name = name
-        self.engine = engine_type
         self.year = year_of_fabrication
+        self.engine = engine_type
         self.car_color = color
         self.plate_number = _number
 

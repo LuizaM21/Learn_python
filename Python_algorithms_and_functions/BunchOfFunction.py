@@ -4,15 +4,19 @@ import re
 import sys
 
 
+def validate_folder(dir_1, dir_2):
+    return len(sys.argv)
+
+
 class CollectionsOfMethods(unittest.TestCase):
     cities = ["Iasi", "London", "Paris", "Greece"]
     countries = ['Italy', 'Greece', 'England', 'France']
     dict = {'Tim': 18, 'Katie': 35, 'John': 21, 'Nicole': 22}
     ro_counties = {'AG': 'Argeș', 'AR': 'Arad', 'B': 'Bucuresti', 'BC': 'Bacau', 'BH': 'Bihor',
                    'BN': 'Bistrița-Năsăud', 'BR': 'Brăila', 'BT': 'Botoșani', 'BV': 'Brașov', 'BZ': 'Buzău',
-                   'CJ': 'Cluj', 'CL': 'Călărași', 'CS':'Caraș-Severin', 'CT':'Constanța', 'CV': 'Covasna',
+                   'CJ': 'Cluj', 'CL': 'Călărași', 'CS': 'Caraș-Severin', 'CT': 'Constanța', 'CV': 'Covasna',
                    'DB': 'Dâmbovița', 'DJ': 'Dolj', 'GJ': 'Gorj', 'GL': 'Galați', 'GR': 'Giurgiu',
-                   'HD': 'Hunedoara', 'HR': 'Harghita', 'IF': 'Ilfov', 'IL':'Ialomița', 'IS': 'Iași',
+                   'HD': 'Hunedoara', 'HR': 'Harghita', 'IF': 'Ilfov', 'IL': 'Ialomița', 'IS': 'Iași',
                    'MH': 'Mehedinți', 'MM': 'Maramureș', 'MS': 'Mureș', 'NT': 'Neamț', 'OT': 'Olt',
                    'PH': 'Prahova', 'SB': 'Sibiu', 'SJ': 'Sălaj', 'SV': 'Suceava', 'SM': 'Satu Mare',
                    'TL': 'Tulcea', 'TM': 'Timiș', 'TR': 'Teleorman', 'VL': 'Vâlcea', 'VN': 'Vrancea', 'VS': 'Vaslui'}
@@ -35,12 +39,13 @@ class CollectionsOfMethods(unittest.TestCase):
         # create valid dictionary with counties
         ro_counties = {'AG': 'Argeș', 'AR': 'Arad', 'B': 'Bucuresti', 'BC': 'Bacau', 'BH': 'Bihor',
                        'BN': 'Bistrița-Năsăud', 'BR': 'Brăila', 'BT': 'Botoșani', 'BV': 'Brașov', 'BZ': 'Buzău',
-                       'CJ': 'Cluj', 'CL': 'Călărași', 'CS':'Caraș-Severin', 'CT':'Constanța', 'CV': 'Covasna',
+                       'CJ': 'Cluj', 'CL': 'Călărași', 'CS': 'Caraș-Severin', 'CT': 'Constanța', 'CV': 'Covasna',
                        'DB': 'Dâmbovița', 'DJ': 'Dolj', 'GJ': 'Gorj', 'GL': 'Galați', 'GR': 'Giurgiu',
-                       'HD': 'Hunedoara', 'HR': 'Harghita', 'IF': 'Ilfov', 'IL':'Ialomița', 'IS': 'Iași',
+                       'HD': 'Hunedoara', 'HR': 'Harghita', 'IF': 'Ilfov', 'IL': 'Ialomița', 'IS': 'Iași',
                        'MH': 'Mehedinți', 'MM': 'Maramureș', 'MS': 'Mureș', 'NT': 'Neamț', 'OT': 'Olt',
                        'PH': 'Prahova', 'SB': 'Sibiu', 'SJ': 'Sălaj', 'SV': 'Suceava', 'SM': 'Satu Mare',
-                       'TL': 'Tulcea', 'TM': 'Timiș', 'TR': 'Teleorman', 'VL': 'Vâlcea', 'VN': 'Vrancea', 'VS': 'Vaslui'}
+                       'TL': 'Tulcea', 'TM': 'Timiș', 'TR': 'Teleorman', 'VL': 'Vâlcea', 'VN': 'Vrancea',
+                       'VS': 'Vaslui'}
 
         # extract country acronym from input parameter
         county = plate_number[:2]
@@ -57,6 +62,7 @@ class CollectionsOfMethods(unittest.TestCase):
         if match_plate:
             if county in ro_counties.keys():
                 return True
+            return None
         else:
             return False
 
@@ -66,7 +72,6 @@ class CollectionsOfMethods(unittest.TestCase):
         print(args)
         print(kwargs)
 
-    """"
     def test_multiple_arguments(self):
         courses = ['Math', 'Arts', 'Science']
         student_info = {'name': 'John', 'age': 24, 'study year': 2}
@@ -111,23 +116,21 @@ class CollectionsOfMethods(unittest.TestCase):
         return lambda x, y: x + y
 
     @staticmethod
-    def my_reduce(func, data=range(5)):
-        rez = CollectionsOfMethods()
-        for i in data:
-            result = rez.reduce_values(result, i)
-        return rez
+    def my_reduce(func, data, initial):
+        result = initial
+        for item in data:
+            result = func(result, item)
+        return result
 
-    """
-    def validate_folder(self, dir_1, dir_2):
-        return len(sys.argv)
+    def sort(self):
+        pass
 
 
 if __name__ == "__main__":
     col_obj = CollectionsOfMethods()
-    print(col_obj.validate_folder(1, 2))
+    print(validate_folder(1, 2))
     # col_obj.testty_list()
     # col_obj.test_pl_ciate_number()
     # col_obj.test_dictionary_sorted_by_keys()
     # sys.exit()
-    # col_obj.test_country_France()
-
+    col_obj.test_country_France()

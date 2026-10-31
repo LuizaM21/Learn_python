@@ -114,7 +114,7 @@ def number_is_prime(x):
 def interval(start, stop=None, step=None):
     """Generate an interval of integers"""
     def check_interval(element):
-        """Verify is the element is present in the given range"""
+        """Verify if the element is present in the given range"""
         if start < stop:
             return start <= element < stop
         return start >= element > stop
@@ -155,7 +155,8 @@ if __name__ == "__main__":
     print(interval(9, 12, 2))
 
     print('generate prime numbers for first 100 values ')
-    [x for x in range(101) if number_is_prime(x)]
+    var = [x for x in range(101) if number_is_prime(x)]
+    print(var)
     # sort the list
     print("Sorting numbers ascending order\n" + str(sortAlg.sort_vector(list_numbers)))
     print('Players resulted list from string:')

@@ -1,7 +1,7 @@
-"""Generators provides the means for describing iterable series with code and functions
+"""Generators provide the means for describing iterable series with code and functions
 - are lazily evaluates: they execute one value on demand
 - can run infinite sequences with no defined end
-- instead of return the generators uses yield key word"""
+- instead of return the generators use yield key word"""
 
 
 """"    

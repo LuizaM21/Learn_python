@@ -13,7 +13,7 @@ class SortingAlgorithm:
         return self
 
     @staticmethod
-    def find_thee_number_in_list():
+    def find_three_number_in_list():
         print("----Iterator and decision statements----------------")
         number_list = [1, 2, 3, 4, 5, 6, 7, 8]
         for num in number_list:
@@ -49,17 +49,20 @@ class SortingAlgorithm:
     """------------Create conditional functions-----------------"""
     def compare_two_values(self, value_2):
         if self < value_2:
-            return print(str(value_2) + " is bigger than value " + str(self))
+            print(str(value_2) + " is bigger than value " + str(self))
         elif self > value_2:
-            return print(str(self) + " is bigger than value " + str(value_2))
+            print(str(self) + " is bigger than value " + str(value_2))
         else:
-            return print(str(self) + " is equal with " + str(value_2))
+            print(str(self) + " is equal with " + str(value_2))
 
-    def check_value_in_array(self, array=list()):
+    def check_value_in_array(self, array= list()):
         if self not in array:
-            return print('\n' + str(self) + ' is not present in array')
+            print('\n' + str(self) + ' is not present in array')
         else:
-            return print('\n' + str(self) + ' is present in array')
+            print('\n' + str(self) + ' is present in array')
+
+    def sort(self):
+        pass
 
 
 if __name__ == '__main__':

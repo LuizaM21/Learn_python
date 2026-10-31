@@ -1,5 +1,5 @@
-""" tuple are immutable sequence or arbitrary objects
-you can`t modify this type of list
+""" tuples are immutable sequence or arbitrary objects
+you can't modify this type of list
 once created, the object within them cannot be replaced or removed"""
 
 import sys

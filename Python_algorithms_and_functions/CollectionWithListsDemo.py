@@ -17,7 +17,7 @@ def main():
     second_item = players_list[-2]
     print('second item from the EOL:\t', second_item)
 
-    # slice a lists in a interval index
+    # slice a list in an interval index
     slice_elements = players_list[0:2]
     print('slice elements of a list:\t', slice_elements)
 
@@ -76,14 +76,14 @@ def main():
     min_value = min(list_numbers)
     print('minimum value:\t', min_value)
 
-    # obtain the sum of elem of the list
+    # get the sum of elem of the list
     sum_list = sum(list_numbers)
     print('sum of the entire value of the list:\t', sum_list)
 
     """-------------------retrieve the position of a specific value from the list------------"""
     list_seasons = ["summer", "spring", "winter", "autumn"]
     print('\nlist_seasons:\t', list_seasons)
-    # Retrieve the position of spring element from the seasons list
+    # Retrieve the position of spring element from the season list
     print('spring elem position:\t', list_seasons.index('spring'))
 
     # return random value from a list using choice function
