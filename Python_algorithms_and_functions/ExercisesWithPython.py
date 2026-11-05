@@ -1,3 +1,4 @@
+import math
 from pprint import pp
 
 
@@ -86,7 +87,68 @@ def summarize(results_api: list[tuple[str, int]]) -> dict[str, dict]:
     return stats_result
 
 
+def add_item(item, items=None):
+    if items is None:
+        items = []
+    items.append(item)
+    return items
+
+def percentile(values: list[float], p: float)-> float|None:
+        if not values:
+            return None
+        if not 0 <= p <= 100:
+            raise ValueError("p must be between 0 and 100")
+        sorted_values = sorted(values)
+        rank =  math.ceil(p * len(sorted_values) / 100)
+        rank =  max(rank,1)
+        return sorted_values[rank - 1]
+
+def slowest(values: list, k: int) -> list:
+    if not values:
+        return []
+    if k <= 0:
+        return []
+    sorted_values = sorted(values,reverse=True)
+    highest_values = sorted_values[:k]
+    return highest_values
+
+def error_rate(code_list: list)-> dict:
+    if not code_list:
+        return {}
+    stats =  {}
+    frequency = {}
+
+    num_of_errors =  sum(1 for code in code_list if code >=400)
+    error_rate_val = num_of_errors / len(code_list) * 100
+    for i in code_list:
+        if i not in frequency:
+            frequency[i] = 1
+        else:
+            frequency[i] +=1
+    stats["counts"] = frequency
+    stats["error_rate"] = error_rate_val
+    return stats
+
+
 if __name__ == '__main__':
+    codes = [200, 200, 500, 404, 200, 201, 503, 200]
+    print(error_rate(codes))
+    print("expected:\n{'counts': {200: 4, 500: 1, 404: 1, 201: 1, 503: 1}, 'error_rate': 37.5}")
+
+    times = [120, 85, 300, 95, 110, 450, 100, 90, 105, 130]
+    print(slowest(times, 3))  # expected: [450, 300, 130]
+    print(slowest([], 3))  # expected: []
+    print(slowest([], -1))  # expected: []
+
+    times = [120, 85, 300, 95, 110, 450, 100, 90, 105, 130]
+
+    print(percentile(times, 90))  # expected: 300
+    print(percentile(times, 50))  # expected: 105
+
+    print(add_item("a"))
+    print(add_item("b"))
+    print(add_item("c", ["x"]))
+
     print(stats([100, 200, 300]))
     print(low_and_avg([120, 80, 100]))  # (80, 100.0)
     print(low_and_avg([]))  # (0, 0.0)
