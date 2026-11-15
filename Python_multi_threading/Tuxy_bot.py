@@ -2,7 +2,7 @@ import sys
 
 
 def check_palindrome(input_value):
-    """"Check if the value is a palindrome"""
+    """Check if the value is a palindrome"""
 
     word = reversed(input_value)
     if list(word) == list(input_value):
@@ -14,7 +14,7 @@ def check_palindrome(input_value):
 
 
 def calculate_sum_of_numbers(*numbers):
-    """"Calculate the sum of the entered parameters"""
+    """Calculate the sum of the entered parameters"""
     try:
         isinstance(numbers, list)
         input_num = [int(in_num) for in_num in numbers]
@@ -67,6 +67,7 @@ def calculate_inputs(input_one, operand, input_two):
         except ValueError as val_err:
             print(val_err)
             return False
+    return None
 
 
 def no_operation(* _):

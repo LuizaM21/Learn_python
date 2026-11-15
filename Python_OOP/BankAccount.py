@@ -1,6 +1,7 @@
 """Creates BankAccount objects, each with its own list of transactions."""
 
 
+from typing_extensions import assert_type
 class BankAccount:
     """A Bank Account with a balance of 0 by default .
     Attributes:
@@ -74,10 +75,18 @@ class BankAccount:
 
         return cls(owner, balance)
 
-if __name__ == '__main__':
+    def __repr__(self):
+        return f"Bank Account: {self.owner}, {self.balance}, {self.transactions}, {BankAccount.accounts_created}"
 
+    def __str__(self):
+        return f"{self.owner}, {self.balance}, {self.transactions}"
+
+if __name__ == '__main__':
     luiza = BankAccount("Luiza", 1000)
+    print(luiza.__repr__())
+    print(luiza.__str__())
     andrew = BankAccount("Andrew", 500)
+    print(andrew)
     print("Number of accounts created:", BankAccount.accounts_created)
 
     luiza.interest_rate = 0.10
@@ -119,7 +128,7 @@ if __name__ == '__main__':
 
     luiza = BankAccount.from_string("Luiza,1000")
     print(luiza.statement())  # Luiza: 1000
-    print(type(luiza.balance))  # <class 'int'>
+    assert type(luiza.statement()), "<class 'int'>"  # <class 'int'>
     print(BankAccount.accounts_created)  # 3
 
     try:
