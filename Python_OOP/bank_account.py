@@ -1,6 +1,10 @@
 """Creates BankAccount objects, each with its own list of transactions."""
-
+from typing import Optional
 from abc import ABC, abstractmethod
+
+WITHDRAW = "withdraw"
+OVERDRAFT = "overdraft"
+
 
 class FeeStrategy(ABC):
     @abstractmethod
@@ -25,6 +29,58 @@ class OverdraftFee(FeeStrategy):
         return  5
 
 
+class InterestStrategy(ABC):
+    @abstractmethod
+    def calculate(self, balance: float) -> float:
+        ...
+
+class NoInterest(InterestStrategy):
+    def calculate(self, balance)-> float:
+        return 0
+
+class FlatRate(InterestStrategy):
+    def __init__(self, rate):
+        self.rate = rate
+
+    def calculate(self, balance: float)-> float:
+        if balance < 0 :
+            return 0
+        return round(balance * self.rate, 2)
+
+class TieredRate(InterestStrategy):
+    """2% on the first 1000, 4% on everything above."""
+    def calculate(self, balance):
+        if balance < 0:
+            return 0
+        low = min(balance, 1000) * 0.02
+        high =  max(balance - 1000, 0) * 0.04
+        return round(low + high, 2)
+
+
+class AccountObserver(ABC):
+    @abstractmethod
+    def update(self, event: str, account: "BankAccount", amount: float) -> None:
+        ...
+
+
+class LargeWithdrawalAlert(AccountObserver):
+    """Records an alert when a single withdrawal is above the threshold."""
+    def __init__(self, threshold):
+        self.threshold = threshold
+        self.alerts = []
+
+    def update(self, event, account, amount):
+        if event == WITHDRAW and amount > self.threshold:
+            self.alerts.append(f"{account.owner} withdrew {amount}")
+
+
+class AuditLog(AccountObserver):
+    def __init__(self):
+        self.entries = []
+
+    def update(self, event, account, amount):
+        self.entries.append(f"Event: {event}, Account: {account.owner}, Amount: {amount}")
+
 
 class BankAccount:          # parent (base class)
     """A Bank Account with a balance of 0 by default .
@@ -35,15 +91,29 @@ class BankAccount:          # parent (base class)
     """
 
     bank_name = "Python Bank"      # class attribute: the same for every account
-    interest_rate = 0.05           # class attribute: the default rate for all accounts
     accounts_created = 0           # class attribute: a counter shared by all
 
-    def __init__(self, owner, balance=0, fee_strategy=None):
+
+    def __init__(self, owner, balance=0, fee_strategy=None, interest_strategy:Optional[InterestStrategy]=None):
         self.owner = owner
         self.balance = balance
         self.transactions = []
         self.fee_strategy = fee_strategy if fee_strategy else NoFee()
+        self.interest_strategy = interest_strategy if interest_strategy else NoInterest()
+        self._observers = []
         BankAccount.accounts_created += 1
+
+    def subscribe(self, observer):
+        self._observers.append(observer)
+
+    def unsubscribe(self, observer):
+        if observer not in self._observers:
+            raise ValueError("Observer is not subscribed to this account!")
+        self._observers.remove(observer)
+
+    def _notify(self, event, amount):
+        for observer in self._observers:
+            observer.update(event, self, amount)
 
     def deposit(self, *amounts, note=None):
         if not amounts:
@@ -74,7 +144,10 @@ class BankAccount:          # parent (base class)
 
         for amount in amounts:
             self.balance -= amount
-            self.transactions.append(f"withdraw {amount}")
+            self.transactions.append(f"{WITHDRAW} {amount}")
+            self._notify(WITHDRAW, amount)
+        if self.balance < 0:
+             self._notify(OVERDRAFT, self.balance)
 
     def _check_funds(self, amount):
         if self.balance < amount:
@@ -87,19 +160,18 @@ class BankAccount:          # parent (base class)
         return f"{self.owner}: {self.balance}"
 
     def apply_interest(self):
-        applied_interest = self.balance * self.interest_rate
-        self.balance += applied_interest
-        self.transactions.append(f"interest {applied_interest}")
+        applied_interest = self._calculate_interest()
+        if applied_interest:
+            self.balance += applied_interest
+            self.transactions.append(f"interest {applied_interest}")
 
     def month_end(self):
         """The template: same skeleton for every account."""
         interest = self._calculate_interest()       #hook
-        # pyrefly: ignore[redundant-condition]
         if interest:
             self.balance += interest
             self.transactions.append(f"interest {interest}")
         fee = self._monthly_fee()       # hook
-        # pyrefly: ignore[redundant-condition]
         if fee:
             self.balance -= fee             # bank fees skip _check_funds on purpose
             self.transactions.append(f"fee {fee}")
@@ -111,10 +183,11 @@ class BankAccount:          # parent (base class)
             self.transactions.append(f"fee {fee}")
 
     def _calculate_interest(self):
-        return 0
+        interest = self.interest_strategy.calculate(self.balance)
+        return interest
 
     def _monthly_fee(self):
-        return 0
+        return self.fee_strategy.calculate(self.balance)
 
     @staticmethod
     def is_valid_amount(amount):
@@ -181,12 +254,11 @@ class BankAccount:          # parent (base class)
 
 
 class SavingsAccount(BankAccount):
-    def __init__(self, owner, balance=0, min_balance=100, rate = 0.05):
+    def __init__(self, owner, balance=0, min_balance=100, interest_strategy=None):
         if balance < min_balance:
             raise ValueError(f"Opening balance must be at least {min_balance}, got {balance}!")
-        super().__init__(owner, balance)
+        super().__init__(owner, balance, interest_strategy=interest_strategy or FlatRate(0.05))
         self.min_balance = min_balance
-        self.rate = rate
 
     def _check_funds(self, amount):
         if self.balance - amount < self.min_balance:
@@ -194,9 +266,6 @@ class SavingsAccount(BankAccount):
 
     def statement(self) -> str:
         return f"{super().statement()} (savings)"
-
-    def _calculate_interest(self):
-        return round(self.balance * self.rate, 2)
 
 
 

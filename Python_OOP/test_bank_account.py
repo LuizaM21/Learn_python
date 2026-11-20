@@ -3,11 +3,11 @@
 Run from the folder that contains bank_account.py:
     pytest -v test_bank_account.py
 """
-from nis import match
+from cmath import log
+from Python_OOP_polymorphism.Overriding import B
 import pytest
-from typing import List
 from Python_OOP.bank_account import (BankAccount, CheckingAccount, SavingsAccount,
-                                     StudentAccount, FlatFee, OverdraftFee, FeeStrategy)
+                                     StudentAccount, FlatFee, OverdraftFee, FeeStrategy, FlatRate, TieredRate, LargeWithdrawalAlert, AuditLog)
 
 # Inputs that are not a positive number. Reused by several tests.
 INVALID_AMOUNTS = [-100, -0.1, 0, None, "100", "abc", True]
@@ -25,12 +25,11 @@ def reset_class_state(monkeypatch):
     accounts_created or interest_rate into the next one.
     """
     monkeypatch.setattr(BankAccount, "accounts_created", 0)
-    monkeypatch.setattr(BankAccount, "interest_rate", 0.05)
 
 
 @pytest.fixture
 def luiza():
-    return BankAccount("Luiza", 1000)
+    return BankAccount("Luiza", 1_000)
 
 
 @pytest.fixture
@@ -45,25 +44,19 @@ def test_accounts_created_counts_every_account(luiza, andrew):
     assert BankAccount.accounts_created == 2
 
 
-def test_apply_interest_uses_default_rate(luiza):
+def test_apply_interest_uses_no_rate(luiza):
     luiza.apply_interest()
-    assert luiza.balance == 1050
-    assert luiza.transactions == ["interest 50.0"]
+    assert luiza.balance == 1000
+    assert luiza.transactions == []
 
 
-def test_personal_rate_only_affects_that_account(luiza, andrew):
-    luiza.interest_rate = 0.10  # creates an instance attribute on luiza
-    luiza.apply_interest()
-    andrew.apply_interest()
-    assert luiza.balance == 1100
-    assert andrew.balance == 525
-
-
-def test_changing_class_rate_affects_accounts_without_own_rate(luiza, andrew):
-    luiza.interest_rate = 0.10
-    BankAccount.interest_rate = 0.02  # restored after the test by the fixture
-    assert luiza.interest_rate == 0.10  # own value shadows the class value
-    assert andrew.interest_rate == 0.02
+def test_personal_rate_only_affects_that_account():
+    ana = SavingsAccount("Ana", 1000, interest_strategy=FlatRate(0.10))
+    john = SavingsAccount("Ana", 500)
+    ana.apply_interest()
+    john.apply_interest()
+    assert ana.balance == 1100
+    assert john.balance == 525
 
 
 # --------------------------------------------------------------------------
@@ -374,4 +367,119 @@ def test_strategy_can_be_swapped_at_runtime():
 
 def test_fee_strategy_cannot_be_instantiated():
     with pytest.raises(TypeError, match="abstract class FeeStrategy"):
-        FeeStrategy()
+        # pyrefly: ignore[bad-instantiation]
+        FeeStrategy()  # ty: ignore[abstract-class-instantiation]
+
+
+@pytest.mark.parametrize("strategy, balance, expected", [
+    (FlatRate(0.05), -50, 0),
+    (FlatRate(0.05), 0, 0),
+    (TieredRate(), -50, 0),
+    (TieredRate(), 500, 10.0),      # under 1000: only the 2% part
+    (TieredRate(), 1500, 40.0),     # 1000 at 2% + 500 at 4%
+])
+def test_interest_strategy_calculate(strategy, balance, expected):
+    assert strategy.calculate(balance) == expected
+
+
+def test_month_end_uses_both_strategies():
+    ion = BankAccount("Ion", 1000,
+                      interest_strategy=FlatRate(0.05),
+                      fee_strategy=FlatFee(3))
+    ion.month_end()
+    assert ion.balance == 1047.0            # 1000 + (1000 × 0.05) − 3
+    assert ion.transactions ==  ["interest 50.0", "fee 3"]    # order matters
+
+
+def test_interest_strategy_can_be_swapped_at_runtime():
+    dan = BankAccount("Dan", 500)            # starts with NoInterest
+    dan.interest_strategy = FlatRate(0.10)             # switch to 10% interest
+    dan.apply_interest()
+    assert dan.balance == 550.0               # 500 + (500 × 0.10)
+    assert dan.transactions == ["interest 50.0"]
+
+def test_large_withdrawal_triggers_alert():
+    alert = LargeWithdrawalAlert(threshold=5_000)
+    ana = BankAccount("Ana", 20_000)
+    ana.subscribe(alert)
+    ana.withdraw(6_000)
+    assert alert.alerts == ["Ana withdrew 6000"]
+
+def test_rejected_withdrawal_notification():
+    log = AuditLog()
+    ana = BankAccount("Ana", 100)
+    ana.subscribe(log)
+    with pytest.raises(ValueError):
+        ana.withdraw(500)
+    assert log.entries == []
+
+def test_overdraft_notified_once_with_final_balance():
+    log = AuditLog()
+    ion = CheckingAccount("Ion", 50)
+    ion.subscribe(log)
+    ion.withdraw(100, 100)
+    assert log.entries == [
+        "Event: withdraw, Account: Ion, Amount: 100",
+        "Event: withdraw, Account: Ion, Amount: 100",
+        "Event: overdraft, Account: Ion, Amount: -150"
+    ]
+
+def test_small_withdrawal_no_alert():
+    alert = LargeWithdrawalAlert(threshold=100)
+    ana = BankAccount("Ana",500)
+    ana.subscribe(alert)
+    ana.withdraw(50)
+    assert alert.alerts == []
+
+def test_withdrawal_exactly_at_threshold():
+    alert = LargeWithdrawalAlert(threshold=100)
+    ana = BankAccount("Ana",500)
+    ana.subscribe(alert)
+    ana.withdraw(100)
+    assert alert.alerts == []
+
+
+def test_every_observer_is_notified():
+    alert = LargeWithdrawalAlert(threshold=100)
+    log = AuditLog()
+    ana = CheckingAccount("Ana",100)
+    ana.subscribe(alert)
+    ana.subscribe(log)
+    ana.withdraw(200)
+    assert alert.alerts == ["Ana withdrew 200"]
+    assert log.entries == [
+        "Event: withdraw, Account: Ana, Amount: 200",
+        "Event: overdraft, Account: Ana, Amount: -100"
+        ]
+
+def test_unsubscribed_observer_is_not_notified():
+    alert = LargeWithdrawalAlert(threshold=100)
+    ana = BankAccount("Ana", 300)
+    ana.subscribe(alert)
+    ana.unsubscribe(alert)
+    ana.withdraw(200)
+    assert alert.alerts == []
+
+def test_observers_are_per_account():
+    alert = LargeWithdrawalAlert(threshold=100)
+    log = AuditLog()
+    ana = CheckingAccount("Ana", 1_000)
+    dan = CheckingAccount("Dan", 500)
+    ana.subscribe(alert)
+    ana.subscribe(log)
+    ana.withdraw(1_100)
+    dan.withdraw(600)
+    assert alert.alerts == ["Ana withdrew 1100"]
+    assert log.entries == [
+        "Event: withdraw, Account: Ana, Amount: 1100",
+        "Event: overdraft, Account: Ana, Amount: -100"
+        ]
+
+def test_unsubscribe_for_observer_without_subscribe():
+    alert = LargeWithdrawalAlert(threshold=100)
+    log = AuditLog()
+    dan = CheckingAccount("Dan", 500)
+    dan.subscribe(log)
+    with pytest.raises(ValueError, match="Observer is not subscribed to this account" ):
+        dan.unsubscribe(alert)
+    assert dan._observers == [log]
